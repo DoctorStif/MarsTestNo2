@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mars Kaplama – Endüstriyel Yüzey Kaplama Çözümleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   DARK THEME (default)
+══════════════════════════════════════════════ */
+:root {
+  --bg:          #151922;
+  --bg-2:        #1e2433;
+  --bg-3:        rgba(40,48,66,0.18);
+  --bg-4:        #2e374d;
+  --bg-top:      #0e1117;
+  --bg-footer:   #0d1018;
+  --nav-bg:      rgba(21,25,34,0.96);
+  --gold:        #c8922a;
+  --gold-lt:     #e0a83c;
+  --gold-dim:    rgba(200,146,42,0.18);
+  --gold-line:   rgba(200,146,42,0.28);
+  --text-main:   #eceae5;
+  --text-body:   #b0bdd0;
+  --text-muted:  #7e8fa8;
+  --text-head:   #ffffff;
+  --border:      rgba(40,48,66,0.35);
+  --card-bg:     #1e2433;
+  --card-hover:  #2e374d;
+  --input-bg:    #1e2433;
+  --input-bdr:   #2e374d;
+  --hero-grid:   rgba(200,146,42,0.04);
+  --hero-glow:   rgba(200,146,42,0.07);
+  --page-hero-grad: rgba(21,25,34,0.97);
+  --topbar-a:    #7e8fa8;
+  --scrollbar-track: #1e2433;
+  --proc-bg:     #1e2433;
+  --success:     #2ecc71;
+  --nav-h: 76px;
+  --theme-icon-sun: block;
+  --theme-icon-moon: none;
+}
+
+/* ══════════════════════════════════════════════
+   LIGHT THEME  —  Crisp white + slate enterprise
+══════════════════════════════════════════════ */
+html.light {
+  /* Backgrounds: pure white primary, cool slate-grey secondary */
+  --bg:          #ffffff;
+  --bg-2:        #f0f3f7;
+  --bg-3:        rgba(100,120,150,0.08);
+  --bg-4:        #e3e8f0;
+  --bg-top:      #0f1623;
+  --bg-footer:   #0f1623;
+  --nav-bg:      rgba(255,255,255,0.97);
+
+  /* Gold stays rich but slightly deeper for legibility on white */
+  --gold:        #a8720e;
+  --gold-lt:     #c8922a;
+  --gold-dim:    rgba(168,114,14,0.10);
+  --gold-line:   rgba(168,114,14,0.22);
+
+  /* Text: deep navy-charcoal hierarchy */
+  --text-main:   #0f1a2e;
+  --text-body:   #2e3f58;
+  --text-muted:  #5c718a;
+  --text-head:   #05101f;
+
+  /* Borders: clean slate lines */
+  --border:      rgba(80,110,150,0.14);
+
+  /* Cards */
+  --card-bg:     #f0f3f7;
+  --card-hover:  #e3e8f0;
+
+  /* Inputs */
+  --input-bg:    #f7f9fc;
+  --input-bdr:   #c8d3e0;
+
+  /* Hero decorations */
+  --hero-grid:   rgba(100,130,180,0.04);
+  --hero-glow:   rgba(168,114,14,0.05);
+  --page-hero-grad: rgba(240,244,250,0.96);
+
+  /* Top bar link colour (on dark top bar) */
+  --topbar-a:    #8fa8c8;
+
+  /* Misc */
+  --scrollbar-track: #f0f3f7;
+  --proc-bg:     #f0f3f7;
+}
+
+/* ══════════════════════════════════════════════
+   LIGHT MODE — Targeted overrides
+   White + Slate-Navy + Amber-Gold palette
+══════════════════════════════════════════════ */
+
+/* Nav: white card with slate shadow, no dark bleed */
+html.light #nav{
+  background:rgba(255,255,255,0.98);
+  border-bottom:1px solid rgba(80,110,150,0.14);
+  box-shadow:0 2px 20px rgba(15,26,46,0.07);
+}
+
+/* Strip cards: white base → light-blue hover */
+html.light .strip-card{background:#ffffff;}
+html.light .strip-card:hover{background:#eef2f8;}
+
+/* Services & section-alt need a clearly different shade from white */
+html.light .section-alt{background:#f0f4fa;}
+html.light .about-content{background:#f0f4fa;}
+html.light .about-panel{background:#e3eaf5;}
+
+/* Panel specs inside about panel */
+html.light .panel-spec{background:#edf1f9;border-bottom:1px solid rgba(80,110,150,0.14);}
+
+/* Stat blocks */
+html.light .stat-block{background:#ffffff;}
+
+/* Process steps */
+html.light .proc-step{background:#f0f4fa;}
+html.light .proc-step:hover{background:#e3eaf5;}
+
+/* Sector cards */
+html.light .sector-card{background:#ffffff;}
+html.light .sector-card:hover{background:#eef2f8;}
+
+/* Coating cards on services page */
+html.light .coating-card{background:#f0f4fa;}
+html.light .coating-card:hover{background:#e3eaf5;}
+
+/* Cert / test / pillar / env cards */
+html.light .cert-card{background:#f0f4fa;}
+html.light .cert-card:hover{background:#e3eaf5;}
+html.light .test-card{background:#f0f4fa;}
+html.light .pillar-card{background:#f0f4fa;}
+html.light .env-m{background:#f0f4fa;}
+
+/* Team cards */
+html.light .team-card{background:#f0f4fa;}
+html.light .team-avatar{background:#e3eaf5;}
+
+/* Timeline dots */
+html.light .tl-dot{background:#eef2f8;}
+
+/* Job items */
+html.light .job-item{background:#f0f4fa;}
+html.light .job-item:hover{background:#e3eaf5;}
+
+/* Contact form box */
+html.light .contact-form-box{
+  background:#ffffff;
+  border:1px solid rgba(80,110,150,0.14);
+  box-shadow:0 4px 24px rgba(15,26,46,0.06);
+}
+html.light .cf-input,
+html.light .cf-select,
+html.light .cf-textarea{
+  background:#f7f9fc;
+  border-color:#c8d3e0;
+  color:#0f1a2e;
+}
+html.light .cf-input:focus,
+html.light .cf-select:focus,
+html.light .cf-textarea:focus{border-color:rgba(168,114,14,.6);}
+
+/* Map placeholder */
+html.light .map-placeholder{background:#eef2f8;}
+
+/* Gallery filter pills */
+html.light .gallery-filter{
+  border-color:rgba(80,110,150,0.2);
+  color:#2e3f58;
+  background:#ffffff;
+}
+html.light .gallery-filter:hover,
+html.light .gallery-filter.active{
+  border-color:var(--gold);color:var(--gold);
+  background:rgba(168,114,14,0.08);
+}
+
+/* Gallery items bg */
+html.light .gallery-item{background:#eef2f8;}
+
+/* Page hero banner: slate-navy gradient instead of mud */
+html.light .page-hero{background:#e3eaf5;}
+html.light .page-hero-bg{
+  background:
+    linear-gradient(135deg,rgba(227,234,245,0.97) 40%,rgba(168,114,14,.06) 100%),
+    repeating-linear-gradient(90deg,transparent 0,transparent 79px,rgba(80,110,150,0.08) 80px);
+}
+
+/* Hero section itself: pure white with slate grid */
+html.light #hero-section{background:#ffffff;}
+html.light .hero-bg-grid{
+  background:
+    repeating-linear-gradient(90deg,transparent 0,transparent 79px,rgba(80,110,150,0.04) 80px),
+    repeating-linear-gradient(0deg,transparent 0,transparent 79px,rgba(80,110,150,0.04) 80px);
+}
+
+/* Bolt center */
+html.light .bolt-center{background:#eef2f8;}
+
+/* Cert tags in hero */
+html.light .cert-tag{
+  border-color:rgba(80,110,150,0.2);
+  background:#f0f4fa;
+  color:#2e3f58;
+}
+
+/* Data table */
+html.light .data-table th{background:#e3eaf5;}
+html.light .data-table tr:hover td{background:rgba(168,114,14,0.06);}
+
+/* Scrollbar */
+html.light ::-webkit-scrollbar-track{background:#f0f4fa;}
+
+/* Spec table title */
+html.light .spec-table-title{background:#e3eaf5;}
+
+/* ══════════════════════════════════════════════
+   BASE
+══════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text-main);
+  overflow-x:hidden;
+  transition:background .35s,color .35s;
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{display:block;max-width:100%;}
+button{font-family:inherit;cursor:pointer;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--scrollbar-track);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+/* ══════════════════════════════
+   TOP BAR
+══════════════════════════════ */
+#topbar{
+  background:var(--bg-top);
+  padding:0 5vw;height:36px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--topbar-a);
+  border-bottom:1px solid var(--gold-line);
+  position:relative;z-index:300;
+}
+#topbar a{color:var(--topbar-a);transition:color .2s;}
+#topbar a:hover{color:var(--gold);}
+.topbar-left{display:flex;gap:2rem;}
+.topbar-right{display:flex;gap:1.2rem;align-items:center;}
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-switcher{
+  position:relative;
+  display:flex;align-items:center;gap:0;
+}
+.lang-btn{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  background:transparent;border:1px solid var(--gold-line);
+  color:var(--gold);
+  padding:3px 10px 3px 10px;
+  cursor:pointer;
+  transition:background .2s,color .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.lang-btn .lang-flag{font-size:.9rem;line-height:1;}
+.lang-btn:hover{background:var(--gold-dim);}
+.lang-dropdown{
+  position:absolute;top:calc(100% + 4px);right:0;
+  background:var(--bg-2);
+  border:1px solid var(--gold-line);
+  border-top:2px solid var(--gold);
+  min-width:140px;
+  opacity:0;visibility:hidden;
+  transform:translateY(6px);
+  transition:all .2s;
+  z-index:500;
+}
+.lang-switcher:hover .lang-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.lang-option{
+  display:flex;align-items:center;gap:10px;
+  padding:.6rem 1rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-body);
+  cursor:pointer;
+  border-bottom:1px solid var(--border);
+  transition:background .15s,color .15s;
+}
+.lang-option:last-child{border-bottom:none;}
+.lang-option:hover,.lang-option.active{background:var(--gold-dim);color:var(--gold);}
+.lang-flag-big{font-size:1.1rem;}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{
+  width:34px;height:34px;
+  background:transparent;
+  border:1px solid var(--gold-line);
+  color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:background .2s,border-color .2s;
+  flex-shrink:0;
+}
+.theme-toggle:hover{background:var(--gold-dim);border-color:var(--gold);}
+.theme-toggle svg{width:16px;height:16px;}
+.icon-sun{display:none;}
+.icon-moon{display:block;}
+html.light .icon-sun{display:block;}
+html.light .icon-moon{display:none;}
+
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+#nav{
+  position:sticky;top:0;z-index:200;
+  height:var(--nav-h);
+  background:var(--nav-bg);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--gold-line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+  transition:background .35s;
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;letter-spacing:.06em;color:var(--text-head);
+  cursor:pointer;
+}
+.nav-logo em{color:var(--gold);font-style:normal;}
+.nav-menu{display:flex;gap:0;}
+.nav-item{position:relative;}
+.nav-link{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-body);
+  padding:0 1.1rem;
+  height:var(--nav-h);line-height:var(--nav-h);
+  transition:color .2s;cursor:pointer;
+}
+.nav-link:hover,.nav-link.active{color:var(--gold);}
+.nav-link.active::after{
+  content:'';position:absolute;bottom:0;left:1.1rem;right:1.1rem;
+  height:2px;background:var(--gold);
+}
+.nav-dropdown{
+  position:absolute;top:100%;left:0;
+  background:var(--bg-2);
+  border:1px solid var(--gold-line);
+  border-top:2px solid var(--gold);
+  min-width:220px;
+  opacity:0;visibility:hidden;
+  transform:translateY(8px);
+  transition:all .22s;z-index:300;
+}
+.nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown a{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-body);
+  padding:.8rem 1.4rem;
+  border-bottom:1px solid var(--border);
+  transition:background .15s,color .15s;cursor:pointer;
+}
+.nav-dropdown a:last-child{border-bottom:none;}
+.nav-dropdown a:hover{background:var(--gold-dim);color:var(--gold);}
+.nav-cta{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  background:var(--gold);color:#ffffff;
+  padding:10px 28px;
+  transition:background .2s,transform .15s;
+  cursor:pointer;border:none;
+}
+.nav-cta:hover{background:var(--gold-lt);transform:translateY(-1px);}
+
+/* ══════════════════════════════
+   PAGE SYSTEM
+══════════════════════════════ */
+.page{display:none;}
+.page.active{display:block;}
+.page-enter{animation:pageIn .4s ease both;}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* ══════════════════════════════
+   SHARED COMPONENTS
+══════════════════════════════ */
+.eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);
+  display:flex;align-items:center;gap:12px;margin-bottom:.9rem;
+}
+.eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.big-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  line-height:.96;letter-spacing:.02em;color:var(--text-head);margin-bottom:1.2rem;
+}
+.body-text{font-size:1rem;line-height:1.8;color:var(--text-body);font-weight:300;}
+.section{padding:6rem 5vw;}
+.section-alt{background:var(--bg-2);}
+.divider{height:1px;background:var(--gold-line);margin:0 5vw;}
+
+/* page hero banner */
+.page-hero{
+  position:relative;min-height:340px;
+  display:flex;align-items:flex-end;
+  padding:4rem 5vw;overflow:hidden;
+  background:var(--bg-2);
+}
+.page-hero-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(135deg,var(--page-hero-grad) 40%,rgba(200,146,42,.08) 100%),
+    repeating-linear-gradient(90deg,transparent 0,transparent 79px,var(--gold-line) 80px);
+}
+.page-hero-num{
+  position:absolute;right:5vw;bottom:-2rem;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14rem;color:rgba(200,146,42,.04);line-height:1;
+  pointer-events:none;user-select:none;
+}
+.page-hero-content{position:relative;z-index:1;}
+.page-hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,6rem);
+  line-height:.95;letter-spacing:.02em;color:var(--text-head);
+}
+.page-hero-sub{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1rem;letter-spacing:.06em;color:var(--text-muted);
+  margin-top:.8rem;max-width:600px;line-height:1.6;
+}
+.breadcrumb{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:1.2rem;
+}
+.breadcrumb em{color:var(--gold);font-style:normal;}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  padding:14px 32px;border:none;cursor:pointer;transition:all .2s;
+}
+.btn-gold{background:var(--gold);color:#fff;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+.btn-outline{background:transparent;border:1px solid var(--gold-line);color:var(--gold);}
+.btn-outline:hover{border-color:var(--gold);background:var(--gold-dim);}
+.btn-sm{padding:10px 22px;font-size:.76rem;}
+
+/* stat grid */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--gold-line);}
+.stat-block{background:var(--bg);padding:2rem 1.8rem;transition:background .35s;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--gold);line-height:1;}
+.stat-unit{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);}
+.stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:6px;}
+
+/* data table */
+.data-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+.data-table th{
+  font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);padding:.8rem 1.2rem;text-align:left;
+  border-bottom:1px solid var(--gold-line);background:var(--bg-2);
+}
+.data-table td{padding:.85rem 1.2rem;border-bottom:1px solid var(--border);color:var(--text-body);}
+.data-table tr:hover td{background:var(--gold-dim);}
+
+/* card */
+.card{
+  background:var(--card-bg);border:1px solid var(--border);
+  transition:border-color .25s,transform .25s,background .35s;position:relative;overflow:hidden;
+}
+.card:hover{border-color:var(--gold-line);transform:translateY(-3px);}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.card:hover::before{transform:scaleX(1);}
+
+/* ══════════════════════════════
+   HOME — HERO
+══════════════════════════════ */
+#hero-section{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:0 5vw;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(90deg,transparent 0,transparent 79px,var(--hero-grid) 80px),
+    repeating-linear-gradient(0deg,transparent 0,transparent 79px,var(--hero-grid) 80px);
+}
+.hero-glow{
+  position:absolute;width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,var(--hero-glow) 0%,transparent 65%);
+  right:-200px;top:50%;transform:translateY(-50%);pointer-events:none;
+}
+.hero-left{position:relative;z-index:2;}
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before{content:'';display:block;width:44px;height:1px;background:var(--gold);}
+.hero-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4.5rem,7.5vw,8.5rem);
+  line-height:.9;letter-spacing:.01em;color:var(--text-head);margin-bottom:2rem;
+}
+.hero-h1 span{color:var(--gold);display:block;}
+.hero-desc{
+  font-size:1.05rem;line-height:1.82;color:var(--text-body);
+  font-weight:300;max-width:460px;margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:3.5rem;}
+.hero-certs{
+  display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap;
+  padding-top:1.6rem;border-top:1px solid var(--gold-line);
+}
+.cert-tag{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-muted);border:1px solid var(--bg-4);padding:5px 12px;
+}
+html.light .cert-tag{border-color:var(--border);}
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;}
+.bolt-scene{position:relative;width:420px;height:420px;}
+.orbit{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(200,146,42,.18);}
+.orbit-1{animation:spin 22s linear infinite;}
+.orbit-2{inset:30px;border-style:dashed;border-color:rgba(200,146,42,.1);animation:spin 35s linear infinite reverse;}
+.orbit-3{inset:60px;animation:spin 50s linear infinite;}
+.orbit::after{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--gold);}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.bolt-center{
+  position:absolute;inset:80px;
+  background:var(--bg-2);border-radius:50%;
+  border:1px solid var(--gold-line);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .35s;
+}
+.bolt-svg{width:130px;height:130px;}
+
+/* marquee */
+.marquee-wrap{background:var(--gold);padding:13px 0;overflow:hidden;}
+.marquee-track{display:flex;gap:3rem;white-space:nowrap;animation:marquee 28s linear infinite;}
+.marquee-track span{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bg);font-weight:700;flex-shrink:0;
+}
+html.light .marquee-track span{color:#fff;}
+.marquee-track span::before{content:'◆';margin-right:1.4rem;font-size:.55rem;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* services strip */
+.services-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--gold-line);margin-top:4rem;
+}
+.strip-card{
+  background:var(--bg);padding:2.2rem 1.8rem;
+  position:relative;overflow:hidden;
+  transition:background .25s;cursor:pointer;
+}
+.strip-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .35s;}
+.strip-card:hover{background:var(--bg-4);}
+.strip-card:hover::after{width:100%;}
+.strip-num{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.1em;color:rgba(200,146,42,.3);margin-bottom:.8rem;}
+.strip-icon{width:40px;height:40px;color:var(--gold);margin-bottom:1.2rem;}
+.strip-name{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--text-head);margin-bottom:.6rem;}
+.strip-desc{font-size:.85rem;line-height:1.65;color:var(--text-muted);font-weight:300;}
+.strip-arrow{position:absolute;bottom:1.4rem;right:1.4rem;color:var(--gold);font-size:1.2rem;opacity:0;transition:opacity .25s,transform .25s;}
+.strip-card:hover .strip-arrow{opacity:1;transform:translateX(4px);}
+
+/* about split */
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.about-content{padding:6rem 5vw;background:var(--bg-2);transition:background .35s;}
+.about-panel{background:var(--bg-4);padding:6rem 4vw;display:flex;flex-direction:column;justify-content:center;gap:1px;transition:background .35s;}
+.panel-spec{
+  background:var(--bg-2);padding:1.3rem 1.6rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);transition:background .35s;
+}
+.panel-spec:last-child{border-bottom:none;}
+.panel-spec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);}
+.panel-spec-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);}
+
+/* process row */
+.process-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--gold-line);position:relative;margin-top:3.5rem;}
+.proc-step{background:var(--bg-2);padding:2.4rem 1.6rem;text-align:center;transition:background .2s;}
+.proc-step:hover{background:var(--bg-4);}
+.proc-n{
+  width:52px;height:52px;border-radius:50%;border:1px solid var(--gold-line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--gold);
+  margin:0 auto 1.2rem;transition:background .2s,border-color .2s;
+}
+.proc-step:hover .proc-n{background:var(--gold);color:#fff;border-color:var(--gold);}
+.proc-title{font-family:'Barlow Condensed',sans-serif;font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--text-head);margin-bottom:.5rem;}
+.proc-desc{font-size:.8rem;line-height:1.6;color:var(--text-muted);font-weight:300;}
+
+/* sectors */
+.sectors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-line);margin-top:3rem;}
+.sector-card{
+  background:var(--bg);aspect-ratio:1;padding:2rem;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;overflow:hidden;cursor:pointer;transition:background .25s;
+}
+.sector-card:hover{background:var(--bg-4);}
+.sector-bg-n{position:absolute;top:.8rem;right:1rem;font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(200,146,42,.05);line-height:1;pointer-events:none;}
+.sector-icon{width:38px;height:38px;color:var(--gold);margin-bottom:.8rem;}
+.sector-name{font-family:'Barlow Condensed',sans-serif;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--text-head);}
+
+/* ══════════════════════════════
+   ABOUT PAGE
+══════════════════════════════ */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start;}
+.about-img-placeholder{
+  background:var(--bg-2);aspect-ratio:4/3;border:1px solid var(--gold-line);
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.about-img-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0,transparent 20px,rgba(200,146,42,.03) 20px,rgba(200,146,42,.03) 21px);}
+.about-img-label{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.1em;color:var(--gold-line);position:relative;z-index:1;}
+.timeline{margin-top:3rem;}
+.timeline-item{display:flex;gap:1.8rem;padding-bottom:2.2rem;position:relative;}
+.timeline-item::before{content:'';position:absolute;left:22px;top:44px;bottom:0;width:1px;background:var(--gold-line);}
+.timeline-item:last-child::before{display:none;}
+.tl-dot{width:44px;height:44px;flex-shrink:0;border:1px solid var(--gold-line);background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.7rem;color:var(--gold);letter-spacing:.05em;transition:background .35s;}
+.tl-year{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);margin-bottom:4px;}
+.tl-text{font-size:.88rem;line-height:1.65;color:var(--text-body);font-weight:300;}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);margin-top:3rem;}
+.team-card{background:var(--bg-2);padding:2rem 1.6rem;text-align:center;transition:background .35s;}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:var(--bg-4);border:1px solid var(--gold-line);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);transition:background .35s;}
+.team-name{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-head);}
+.team-role{font-size:.8rem;color:var(--text-muted);margin-top:4px;}
+
+/* ══════════════════════════════
+   SERVICES PAGE
+══════════════════════════════ */
+.coating-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);margin-top:3rem;}
+.coating-card{
+  background:var(--bg-2);padding:2.5rem 2.2rem;
+  transition:background .25s;position:relative;overflow:hidden;
+}
+.coating-card:hover{background:var(--bg-4);}
+.coating-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .3s;}
+.coating-card:hover::before{transform:scaleY(1);}
+.c-num{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.08em;color:rgba(200,146,42,.3);margin-bottom:.7rem;}
+.c-icon{width:44px;height:44px;color:var(--gold);margin-bottom:1rem;}
+.c-name{font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-head);margin-bottom:.7rem;}
+.c-desc{font-size:.88rem;line-height:1.7;color:var(--text-body);font-weight:300;margin-bottom:1rem;}
+.c-tags{display:flex;gap:.5rem;flex-wrap:wrap;}
+.c-tag{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold-line);color:var(--text-muted);padding:3px 10px;}
+.spec-table-title{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:.8rem 1.2rem;background:var(--bg-2);border:1px solid var(--gold-line);border-bottom:none;}
+
+/* ══════════════════════════════
+   GALLERY
+══════════════════════════════ */
+.gallery-controls{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem;padding:1.6rem 0;border-bottom:1px solid var(--gold-line);}
+.gallery-filter{
+  font-family:'Barlow Condensed',sans-serif;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--bg-4);color:var(--text-muted);background:transparent;padding:8px 18px;cursor:pointer;transition:all .2s;
+}
+html.light .gallery-filter{border-color:var(--border);}
+.gallery-filter:hover,.gallery-filter.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+.gallery-masonry{columns:3;column-gap:12px;}
+.gallery-item{break-inside:avoid;margin-bottom:12px;position:relative;overflow:hidden;cursor:pointer;background:var(--bg-2);}
+.gallery-item img{width:100%;display:block;transition:transform .4s;}
+.gallery-item:hover img{transform:scale(1.04);}
+.gallery-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(15,18,26,.92) 0%,transparent 55%);
+  opacity:0;transition:opacity .3s;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem;
+}
+html.light .gallery-overlay{background:linear-gradient(to top,rgba(30,20,10,.85) 0%,transparent 55%);}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-item-title{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:3px;}
+.gallery-item-sub{font-size:.78rem;color:rgba(255,255,255,.7);font-weight:300;}
+.gallery-item-zoom{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:var(--gold);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;font-size:.9rem;color:#fff;font-weight:700;}
+.gallery-item:hover .gallery-item-zoom{opacity:1;}
+#lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(8,10,16,.96);align-items:center;justify-content:center;flex-direction:column;gap:1.2rem;}
+#lightbox.open{display:flex;}
+#lb-img{max-width:90vw;max-height:78vh;object-fit:contain;}
+#lb-close{position:fixed;top:1.5rem;right:2rem;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.1em;color:#888;cursor:pointer;transition:color .2s;}
+#lb-close:hover{color:var(--gold);}
+#lb-caption{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:#888;text-align:center;}
+#lb-nav{display:flex;gap:1rem;}
+.lb-btn{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;border:1px solid rgba(200,146,42,.3);color:var(--gold);background:transparent;padding:8px 20px;cursor:pointer;transition:background .2s;}
+.lb-btn:hover{background:rgba(200,146,42,.15);}
+
+/* ══════════════════════════════
+   QUALITY
+══════════════════════════════ */
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);margin-top:3rem;}
+.cert-card{background:var(--bg-2);padding:2.5rem 2rem;transition:background .25s;}
+.cert-card:hover{background:var(--bg-4);}
+.cert-badge-big{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--gold);margin-bottom:1rem;border:2px solid var(--gold-line);display:inline-block;padding:4px 18px;line-height:1.3;}
+.cert-card-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-head);margin-bottom:.6rem;}
+.cert-card-desc{font-size:.85rem;line-height:1.65;color:var(--text-body);font-weight:300;}
+.test-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold-line);margin-top:3rem;}
+.test-card{background:var(--bg-2);padding:2rem;transition:background .35s;}
+.test-name{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-head);margin-bottom:.5rem;}
+.test-val{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--gold);}
+.test-unit{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;color:var(--text-muted);margin-left:4px;}
+.test-desc{font-size:.82rem;color:var(--text-muted);margin-top:.4rem;font-weight:300;}
+
+/* ══════════════════════════════
+   SUSTAINABILITY
+══════════════════════════════ */
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gold-line);margin-top:3rem;}
+.pillar-card{background:var(--bg-2);padding:3rem 2rem;transition:background .35s;}
+.pillar-icon{width:52px;height:52px;color:var(--gold);margin-bottom:1.4rem;}
+.pillar-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-head);margin-bottom:.7rem;}
+.pillar-text{font-size:.88rem;line-height:1.72;color:var(--text-body);font-weight:300;}
+.env-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-line);margin-top:4rem;}
+.env-m{background:var(--bg-2);padding:2rem 1.6rem;text-align:center;transition:background .35s;}
+.env-val{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--gold);}
+.env-lbl{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:4px;}
+
+/* ══════════════════════════════
+   CAREER
+══════════════════════════════ */
+.jobs-list{margin-top:3rem;display:flex;flex-direction:column;gap:1px;background:var(--gold-line);}
+.job-item{background:var(--bg-2);padding:1.8rem 2.2rem;display:flex;align-items:center;justify-content:space-between;transition:background .2s;cursor:pointer;gap:2rem;}
+.job-item:hover{background:var(--bg-4);}
+.job-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-head);}
+.job-meta{display:flex;gap:1rem;margin-top:5px;flex-wrap:wrap;}
+.job-tag{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);color:var(--text-muted);padding:3px 10px;}
+.job-tag.open{border-color:rgba(46,204,113,.35);color:#2ecc71;}
+.job-dept{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.benefit-item{display:flex;gap:1rem;align-items:flex-start;}
+.benefit-dot{width:36px;height:36px;flex-shrink:0;border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;}
+.benefit-dot svg{width:16px;height:16px;color:var(--gold);}
+.benefit-title{font-family:'Barlow Condensed',sans-serif;font-size:.92rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-head);margin-bottom:3px;}
+.benefit-text{font-size:.82rem;line-height:1.6;color:var(--text-muted);font-weight:300;}
+
+/* ══════════════════════════════
+   CONTACT
+══════════════════════════════ */
+.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start;}
+.contact-info-block{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem 0;border-bottom:1px solid var(--gold-line);}
+.contact-info-block:first-of-type{padding-top:2rem;}
+.ci-icon{width:40px;height:40px;flex-shrink:0;border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;}
+.ci-icon svg{width:16px;height:16px;color:var(--gold);}
+.ci-label{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px;}
+.ci-val{font-size:.95rem;color:var(--text-main);line-height:1.55;}
+.map-placeholder{width:100%;height:240px;background:var(--bg-2);border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;margin-top:2rem;position:relative;overflow:hidden;transition:background .35s;}
+.map-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0,transparent 15px,rgba(200,146,42,.02) 15px,rgba(200,146,42,.02) 16px);}
+.cf-form{display:flex;flex-direction:column;gap:1.2rem;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cf-group{display:flex;flex-direction:column;gap:6px;}
+.cf-label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);}
+.cf-input,.cf-select,.cf-textarea{
+  background:var(--input-bg);border:1px solid var(--input-bdr);
+  color:var(--text-main);font-family:'Barlow',sans-serif;font-size:.92rem;
+  padding:11px 15px;outline:none;transition:border-color .2s,background .35s;width:100%;-webkit-appearance:none;
+}
+.cf-input:focus,.cf-select:focus,.cf-textarea:focus{border-color:rgba(200,146,42,.6);}
+.cf-input::placeholder,.cf-textarea::placeholder{color:rgba(126,143,168,.4);}
+.cf-textarea{resize:vertical;min-height:110px;}
+.cf-select option{background:var(--input-bg);}
+.cf-submit{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;background:var(--gold);color:#fff;border:none;padding:15px 32px;cursor:pointer;transition:background .2s;width:100%;}
+.cf-submit:hover{background:var(--gold-lt);}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer{background:var(--bg-footer);border-top:1px solid var(--gold-line);padding:4rem 5vw 2rem;transition:background .35s;}
+html.light footer{background:#1a1a1a;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-logo-txt{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;color:#fff;margin-bottom:.8rem;}
+.footer-logo-txt em{color:var(--gold);font-style:normal;}
+.footer-tagline{font-size:.85rem;line-height:1.7;color:#888;font-weight:300;max-width:280px;margin-bottom:1.5rem;}
+.footer-socials{display:flex;gap:.8rem;}
+.social-btn{width:36px;height:36px;border:1px solid rgba(200,146,42,.25);display:flex;align-items:center;justify-content:center;color:#888;transition:border-color .2s,color .2s;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.social-btn svg{width:15px;height:15px;}
+.footer-col-title{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.footer-links{display:flex;flex-direction:column;gap:.7rem;}
+.footer-links a{font-size:.85rem;color:#888;transition:color .2s;cursor:pointer;}
+.footer-links a:hover{color:var(--gold);}
+.footer-newsletter{margin-top:1rem;display:flex;}
+.nl-input{flex:1;background:#1e2433;border:1px solid #2e374d;color:#ddd;font-family:'Barlow',sans-serif;font-size:.85rem;padding:10px 14px;outline:none;}
+html.light .nl-input{background:#2a2a2a;border-color:#444;}
+.nl-btn{background:var(--gold);color:#fff;border:none;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:10px 16px;cursor:pointer;transition:background .2s;}
+.nl-btn:hover{background:var(--gold-lt);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:.78rem;color:#555;font-weight:300;}
+.footer-legal{display:flex;gap:1.6rem;}
+.footer-legal a{font-size:.75rem;color:#555;transition:color .2s;cursor:pointer;}
+.footer-legal a:hover{color:var(--gold);}
+
+/* contact form box */
+.contact-form-box{background:var(--bg-2);border:1px solid var(--gold-line);padding:2.5rem;transition:background .35s;}
+
+/* ══════════════════════════════
+   REVEAL
+══════════════════════════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.on{opacity:1;transform:none;}
+.reveal-d1{transition-delay:.08s;}
+.reveal-d2{transition-delay:.16s;}
+.reveal-d3{transition-delay:.24s;}
+.reveal-d4{transition-delay:.32s;}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width:1100px){.gallery-masonry{columns:2;}.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:860px){
+  .nav-menu,.nav-cta{display:none;}
+  #hero-section{grid-template-columns:1fr;padding-top:100px;}
+  .hero-right{display:none;}
+  .about-split,.about-grid{grid-template-columns:1fr;}
+  .coating-list{grid-template-columns:1fr;}
+  .cert-grid,.pillar-grid{grid-template-columns:1fr 1fr;}
+  .process-row{grid-template-columns:1fr 1fr;}
+  .sectors-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .contact-layout{grid-template-columns:1fr;}
+  .cf-row{grid-template-columns:1fr;}
+  .topbar-left{display:none;}
+  .env-metrics{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .services-strip{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:540px){
+  .gallery-masonry{columns:1;}
+  .cert-grid,.pillar-grid,.benefits-grid,.test-grid{grid-template-columns:1fr;}
+  .sectors-grid{grid-template-columns:1fr 1fr;}
+  .services-strip{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="topbar-left">
+    <a href="mailto:info@marskaplama.com.tr">info@marskaplama.com.tr</a>
+    <a href="tel:+902360000000">+90 236 000 00 00</a>
+  </div>
+  <div class="topbar-right">
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">
+      <!-- Moon (dark mode icon) -->
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+      <!-- Sun (light mode icon) -->
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher">
+      <button class="lang-btn" id="lang-current">
+        <span class="lang-flag" id="lang-flag">🇹🇷</span>
+        <span id="lang-label">TR</span>
+        <span style="font-size:.6rem;opacity:.6;">▾</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <div class="lang-option active" data-lang="tr"><span class="lang-flag-big">🇹🇷</span> Türkçe</div>
+        <div class="lang-option" data-lang="en"><span class="lang-flag-big">🇬🇧</span> English</div>
+        <div class="lang-option" data-lang="de"><span class="lang-flag-big">🇩🇪</span> Deutsch</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo" onclick="showPage('home')">MARS<em>.</em>KAPLAMA</div>
+  <div class="nav-menu">
+    <div class="nav-item">
+      <div class="nav-link" id="nav-about" onclick="showPage('about')" data-i18n="nav.about">Hakkımızda</div>
+      <div class="nav-dropdown">
+        <a onclick="showPage('about')" data-i18n="nav.whoweare">Biz Kimiz?</a>
+        <a onclick="showPage('quality')" data-i18n="nav.quality">Kalite</a>
+        <a onclick="showPage('sustainability')" data-i18n="nav.sustain">Sürdürülebilirlik</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <div class="nav-link" id="nav-services" onclick="showPage('services')" data-i18n="nav.services">Hizmetlerimiz</div>
+      <div class="nav-dropdown">
+        <a onclick="showPage('services')" data-i18n="nav.coatingtypes">Kaplama Türleri</a>
+        <a onclick="showPage('services')" data-i18n="nav.techspecs">Teknik Özellikler</a>
+        <a onclick="showPage('services')" data-i18n="nav.sectors">Sektörler</a>
+      </div>
+    </div>
+    <div class="nav-link" id="nav-gallery" onclick="showPage('gallery')" data-i18n="nav.gallery">Galeri</div>
+    <div class="nav-link" id="nav-quality" onclick="showPage('quality')" data-i18n="nav.quality">Kalite</div>
+    <div class="nav-link" id="nav-sustainability" onclick="showPage('sustainability')" data-i18n="nav.sustain">Sürdürülebilirlik</div>
+    <div class="nav-link" id="nav-career" onclick="showPage('career')" data-i18n="nav.career">Kariyer</div>
+    <div class="nav-link" id="nav-contact" onclick="showPage('contact')" data-i18n="nav.contact">İletişim</div>
+  </div>
+  <button class="nav-cta" onclick="showPage('contact')" data-i18n="nav.cta">Teklif Al</button>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div id="page-home" class="page active">
+  <section id="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-left">
+      <p class="hero-eyebrow" data-i18n="home.eyebrow">Endüstriyel Yüzey Kaplama</p>
+      <h1 class="hero-h1" data-i18n-html="home.h1">GÜÇLÜ<br><span>KAPLAMA.</span><br>ÜSTÜN KALİTE.</h1>
+      <p class="hero-desc" data-i18n="home.desc">Mars Kaplama; cıvata, somun ve bağlantı elemanları için uluslararası standartlarda yüzey kaplama hizmeti sunar. 20 yıllık deneyim, ISO sertifikalı süreçler ve endüstriyel güvenilirlik.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold" onclick="showPage('services')" data-i18n="home.btn_services">Hizmetlerimiz →</button>
+        <button class="btn btn-outline" onclick="showPage('contact')" data-i18n="home.btn_quote">Teklif İste</button>
+      </div>
+      <div class="hero-certs">
+        <span class="cert-tag">ISO 9001:2015</span>
+        <span class="cert-tag">ISO 14001:2015</span>
+        <span class="cert-tag">RoHS</span>
+        <span class="cert-tag">REACH</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="bolt-scene">
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="orbit orbit-3"></div>
+        <div class="bolt-center">
+          <svg class="bolt-svg" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="65,10 90,23 90,50 65,63 40,50 40,23" fill="none" stroke="#c8922a" stroke-width="1.8"/>
+            <polygon points="65,20 80,29 80,47 65,56 50,47 50,29" fill="rgba(200,146,42,0.07)" stroke="rgba(200,146,42,0.35)" stroke-width="1"/>
+            <rect x="56" y="63" width="18" height="46" fill="none" stroke="#c8922a" stroke-width="1.8"/>
+            <line x1="56" y1="72" x2="74" y2="72" stroke="rgba(200,146,42,.4)" stroke-width="1"/>
+            <line x1="56" y1="79" x2="74" y2="79" stroke="rgba(200,146,42,.4)" stroke-width="1"/>
+            <line x1="56" y1="86" x2="74" y2="86" stroke="rgba(200,146,42,.4)" stroke-width="1"/>
+            <line x1="56" y1="93" x2="74" y2="93" stroke="rgba(200,146,42,.4)" stroke-width="1"/>
+            <line x1="56" y1="100" x2="74" y2="100" stroke="rgba(200,146,42,.4)" stroke-width="1"/>
+            <rect x="50" y="62" width="30" height="5" rx="1" fill="none" stroke="rgba(200,146,42,.55)" stroke-width="1.4"/>
+            <polygon points="56,109 74,109 68,120 62,120" fill="none" stroke="#c8922a" stroke-width="1.8"/>
+            <circle cx="65" cy="37" r="6" fill="none" stroke="rgba(200,146,42,.5)" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marquee-track">
+      <span data-i18n="marquee.zinc">Elektrolitik Çinko Kaplama</span><span data-i18n="marquee.phosphate">Fosfat Kaplama</span>
+      <span data-i18n="marquee.nickel">Nikel Kaplama</span><span data-i18n="marquee.geomet">Geomet® Kaplama</span>
+      <span data-i18n="marquee.lamel">Çinko Lamel Kaplama</span><span data-i18n="marquee.passivation">Passivation</span>
+      <span data-i18n="marquee.paint">Toz Boya</span><span data-i18n="marquee.hydrogen">Hidrojen Gevrekliği Giderme</span>
+      <span data-i18n="marquee.zinc">Elektrolitik Çinko Kaplama</span><span data-i18n="marquee.phosphate">Fosfat Kaplama</span>
+      <span data-i18n="marquee.nickel">Nikel Kaplama</span><span data-i18n="marquee.geomet">Geomet® Kaplama</span>
+      <span data-i18n="marquee.lamel">Çinko Lamel Kaplama</span><span data-i18n="marquee.passivation">Passivation</span>
+      <span data-i18n="marquee.paint">Toz Boya</span><span data-i18n="marquee.hydrogen">Hidrojen Gevrekliği Giderme</span>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-block reveal"><div class="stat-num">20<span class="stat-unit">+</span></div><div class="stat-lbl" data-i18n="stat.experience">Yıllık Deneyim</div></div>
+    <div class="stat-block reveal reveal-d1"><div class="stat-num">500<span class="stat-unit">+</span></div><div class="stat-lbl" data-i18n="stat.clients">Aktif Müşteri</div></div>
+    <div class="stat-block reveal reveal-d2"><div class="stat-num">10<span class="stat-unit">M+</span></div><div class="stat-lbl" data-i18n="stat.parts">Kaplanan Parça / Yıl</div></div>
+    <div class="stat-block reveal reveal-d3"><div class="stat-num">11</div><div class="stat-lbl" data-i18n="stat.types">Kaplama Çeşidi</div></div>
+    <div class="stat-block reveal reveal-d4"><div class="stat-num">48<span class="stat-unit">h</span></div><div class="stat-lbl" data-i18n="stat.delivery">Maks. Teslimat Süresi</div></div>
+  </div>
+
+  <section class="section section-alt">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="home.services_eyebrow">Uzmanlık Alanlarımız</p>
+      <h2 class="big-title" data-i18n="home.services_title">KAPLAMA HİZMETLERİ</h2>
+      <p class="body-text" style="max-width:560px;margin-bottom:0" data-i18n="home.services_sub">Otomotiv'den inşaata, beyaz eşyadan havacılığa — her sektörün ihtiyacına özel kaplama çözümleri.</p>
+    </div>
+    <div class="services-strip">
+      <div class="strip-card reveal" onclick="showPage('services')"><div class="strip-num">01</div><svg class="strip-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="7"/><line x1="20" y1="6" x2="20" y2="13"/><line x1="20" y1="27" x2="20" y2="34"/></svg><div class="strip-name" data-i18n="svc.zinc">Elektrolitik Çinko Kaplama</div><p class="strip-desc" data-i18n="svc.zinc_d">Mükemmel korozyon direnci, ekonomik maliyet ve geniş uygulama aralığı ile en yaygın kullanılan kaplama türü.</p><div class="strip-arrow">→</div></div>
+      <div class="strip-card reveal reveal-d1" onclick="showPage('services')"><div class="strip-num">02</div><svg class="strip-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="6" width="28" height="28" rx="2"/><path d="M13 20 L18 25 L27 15"/></svg><div class="strip-name" data-i18n="svc.lamel">Çinko Lamel Kaplama</div><p class="strip-desc" data-i18n="svc.lamel_d">Krom içermeyen, yüksek performanslı Geomet® teknolojisiyle otomotiv ana sanayi kalitesi.</p><div class="strip-arrow">→</div></div>
+      <div class="strip-card reveal reveal-d2" onclick="showPage('services')"><div class="strip-num">03</div><svg class="strip-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 34 L20 6 L34 34"/><line x1="11" y1="24" x2="29" y2="24"/></svg><div class="strip-name" data-i18n="svc.phosphate">Fosfat Kaplama</div><p class="strip-desc" data-i18n="svc.phosphate_d">Mangan, çinko ve demir fosfat çeşitleriyle yüzey hazırlığı ve korozyon koruması.</p><div class="strip-arrow">→</div></div>
+      <div class="strip-card reveal reveal-d3" onclick="showPage('services')"><div class="strip-num">04</div><svg class="strip-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="13"/><path d="M13 20 Q16 13 20 20 Q24 27 27 20"/></svg><div class="strip-name" data-i18n="svc.znni">Elektrolitik Çinko-Nikel</div><p class="strip-desc" data-i18n="svc.znni_d">%12–15 nikel içeriğiyle üstün korozyon ve ısı direnci. Otomotiv sektörünün tercihi.</p><div class="strip-arrow">→</div></div>
+      <div class="strip-card reveal reveal-d4" onclick="showPage('services')"><div class="strip-num">05</div><svg class="strip-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 32 L32 32 M20 32 L20 8 M10 18 Q15 10 20 18 Q25 26 30 18"/></svg><div class="strip-name" data-i18n="svc.paint">Toz & Yaş Boya</div><p class="strip-desc" data-i18n="svc.paint_d">Elektrostatik toz boya ve yaş boya. Geniş RAL renk skalasıyla estetik ve koruyucu çözüm.</p><div class="strip-arrow">→</div></div>
+      <div class="strip-card reveal" onclick="showPage('services')"><div class="strip-num">06</div><svg class="strip-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="8" y="16" width="24" height="16" rx="2"/><path d="M13 16 V12 Q20 4 27 12 V16"/><circle cx="20" cy="24" r="4"/></svg><div class="strip-name" data-i18n="svc.special">Özel & Katma Değerli</div><p class="strip-desc" data-i18n="svc.special_d">Hidrojen gevrekliği giderme, teknik temizlik, diş maskeleme ve plastik patch uygulamaları.</p><div class="strip-arrow">→</div></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem"><button class="btn btn-outline" onclick="showPage('services')" data-i18n="home.all_services">Tüm Kaplama Çeşitlerimiz →</button></div>
+  </section>
+
+  <div class="about-split">
+    <div class="about-content">
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="home.about_eyebrow">Hakkımızda</p>
+        <h2 class="big-title" data-i18n="home.about_title">20 YILLIK TECRÜBE</h2>
+        <p class="body-text" style="margin-bottom:1.5rem" data-i18n="home.about_p1">Mars Kaplama, 2004 yılında Manisa'da kurulmuş; bugün yüzlerce ulusal ve uluslararası müşteriye hizmet veren köklü bir yüzey kaplama firmasıdır.</p>
+        <p class="body-text" style="margin-bottom:2.2rem" data-i18n="home.about_p2">Tam otomatik kaplama hatları, modern laboratuvar altyapısı ve 180'i aşkın uzman kadrosuyla yılda 50 milyonu aşkın parça kaplama kapasitesine sahibiz.</p>
+        <button class="btn btn-gold btn-sm" onclick="showPage('about')" data-i18n="home.learn_more">Bizi Daha İyi Tanıyın →</button>
+      </div>
+    </div>
+    <div class="about-panel">
+      <div class="panel-spec reveal"><span class="panel-spec-lbl" data-i18n="spec.founded">Kuruluş Yılı</span><span class="panel-spec-val">2004</span></div>
+      <div class="panel-spec reveal reveal-d1"><span class="panel-spec-lbl" data-i18n="spec.area">Üretim Alanı</span><span class="panel-spec-val">12.000 m²</span></div>
+      <div class="panel-spec reveal reveal-d2"><span class="panel-spec-lbl" data-i18n="spec.employees">Çalışan Sayısı</span><span class="panel-spec-val">180+</span></div>
+      <div class="panel-spec reveal reveal-d3"><span class="panel-spec-lbl" data-i18n="spec.capacity">Yıllık Kapasite</span><span class="panel-spec-val">50M Parça</span></div>
+      <div class="panel-spec reveal reveal-d4"><span class="panel-spec-lbl" data-i18n="spec.sectors">Hizmet Sektörü</span><span class="panel-spec-val">12+</span></div>
+    </div>
+  </div>
+
+  <section class="section section-alt">
+    <div style="text-align:center;max-width:600px;margin:0 auto" class="reveal">
+      <p class="eyebrow" style="justify-content:center" data-i18n="process.eyebrow">Nasıl Çalışırız</p>
+      <h2 class="big-title" data-i18n="process.title">ÜRETİM SÜRECİ</h2>
+      <p class="body-text" data-i18n="process.sub">Talebi aldığımız andan teslimat anına kadar her adım belgelenmiş kalite güvencesiyle yönetilir.</p>
+    </div>
+    <div class="process-row">
+      <div class="proc-step reveal"><div class="proc-n">01</div><div class="proc-title" data-i18n="proc.s1">Talep & Analiz</div><p class="proc-desc" data-i18n="proc.s1d">Teknik gereksinimler, malzeme ve standartlar belirlenir.</p></div>
+      <div class="proc-step reveal reveal-d1"><div class="proc-n">02</div><div class="proc-title" data-i18n="proc.s2">Yüzey Hazırlık</div><p class="proc-desc" data-i18n="proc.s2d">Yağ alma, asitleme ve aktivasyon ile optimum adhesyon.</p></div>
+      <div class="proc-step reveal reveal-d2"><div class="proc-n">03</div><div class="proc-title" data-i18n="proc.s3">Kaplama</div><p class="proc-desc" data-i18n="proc.s3d">Kontrollü parametrelerle talep edilen kaplama uygulanır.</p></div>
+      <div class="proc-step reveal reveal-d3"><div class="proc-n">04</div><div class="proc-title" data-i18n="proc.s4">Kalite Kontrol</div><p class="proc-desc" data-i18n="proc.s4d">XRF, tuz spreyi ve görsel muayene ile tam onay.</p></div>
+      <div class="proc-step reveal reveal-d4"><div class="proc-n">05</div><div class="proc-title" data-i18n="proc.s5">Paket & Teslimat</div><p class="proc-desc" data-i18n="proc.s5d">Belgelendirme, güvenli ambalaj ve zamanında teslimat.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reveal"><p class="eyebrow" data-i18n="sectors.eyebrow">Hizmet Alanlarımız</p><h2 class="big-title" data-i18n="sectors.title">SEKTÖRLER</h2></div>
+    <div class="sectors-grid">
+      <div class="sector-card reveal"><div class="sector-bg-n">01</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M19 17H5a2 2 0 01-2-2V9a2 2 0 012-2h14a2 2 0 012 2v6a2 2 0 01-2 2z"/><path d="M3 11h18M8 7V5M16 7V5"/></svg><div class="sector-name" data-i18n="sector.auto">Otomotiv</div></div>
+      <div class="sector-card reveal reveal-d1"><div class="sector-bg-n">02</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg><div class="sector-name" data-i18n="sector.construction">İnşaat</div></div>
+      <div class="sector-card reveal reveal-d2"><div class="sector-bg-n">03</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 12h10M12 7v10"/></svg><div class="sector-name" data-i18n="sector.machinery">Makine İmalat</div></div>
+      <div class="sector-card reveal reveal-d3"><div class="sector-bg-n">04</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><div class="sector-name" data-i18n="sector.electrical">Elektrik & Elektronik</div></div>
+      <div class="sector-card reveal reveal-d4"><div class="sector-bg-n">05</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg><div class="sector-name" data-i18n="sector.aviation">Havacılık</div></div>
+      <div class="sector-card reveal"><div class="sector-bg-n">06</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><div class="sector-name" data-i18n="sector.appliance">Beyaz Eşya</div></div>
+      <div class="sector-card reveal reveal-d1"><div class="sector-bg-n">07</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20"/></svg><div class="sector-name" data-i18n="sector.marine">Denizcilik</div></div>
+      <div class="sector-card reveal reveal-d2"><div class="sector-bg-n">08</div><svg class="sector-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg><div class="sector-name" data-i18n="sector.energy">Enerji & Altyapı</div></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem" class="reveal">
+      <div><p class="eyebrow" data-i18n="gallery.eyebrow">Referans Görseller</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,3.5rem)" data-i18n="gallery.title">KAPLAMA GALERİSİ</h2></div>
+      <button class="btn btn-outline" onclick="showPage('gallery')" data-i18n="gallery.see_all">Tüm Galeriyi Gör →</button>
+    </div>
+    <div id="home-gallery-preview" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;"></div>
+  </section>
+</div>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<div id="page-about" class="page">
+  <div class="ph-hero" id="ph-about">
+    <div class="gh-bg-grid"></div><div class="gh-glow"></div>
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.about">Ana Sayfa / <em>Hakkımızda</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="about.title">BİZ KİMİZ?</h1>
+      <p class="gh-sub" data-i18n="about.sub">20 yıllık köklü geçmiş, güçlü altyapı ve uzman ekiple Türkiye'nin önde gelen yüzey kaplama şirketlerinden biri.</p>
+      <div class="coating-stages" id="cs-about">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+      <div class="stage-desc-box"><div class="sdb-num" id="sdb-num-about">01</div><p class="sdb-text" id="sdb-text-about"></p></div>
+    </div>
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-about" width="440" height="440"></canvas>
+      <button class="replay-btn" id="replay-btn-about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button>
+    </div>
+  </div>
+  <section class="section">
+    <div class="about-grid">
+      <div>
+        <div class="reveal">
+          <p class="eyebrow" data-i18n="about.history_ey">Tarihçemiz</p>
+          <h2 class="big-title" style="font-size:clamp(2.4rem,4vw,4rem)" data-i18n="about.history_title">MARS KAPLAMA HAKKINDA</h2>
+          <p class="body-text" style="margin-bottom:1.5rem" data-i18n="about.p1">Mars Kaplama San. ve Tic. Ltd. Şti., 2004 yılında Manisa Organize Sanayi Bölgesi'nde kurulmuştur.</p>
+          <p class="body-text" style="margin-bottom:1.5rem" data-i18n="about.p2">12.000 m² üretim alanımızda tam otomatik kaplama hatlarımız, gelişmiş laboratuvar altyapımız ve 180'i aşkın uzman kadromuzla yılda 50 milyonu aşkın parça kaplama kapasitesine sahibiz.</p>
+          <p class="body-text" data-i18n="about.p3">Başta otomotiv ana ve yan sanayi olmak üzere; inşaat, beyaz eşya, elektronik, mobilya, enerji ve havacılık sektörlerine hizmet veriyoruz.</p>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline-item"><div class="tl-dot">2004</div><div><div class="tl-year">2004</div><div class="tl-text" data-i18n="tl.2004">Manisa OSB'de kuruluş. İlk elektrolitik çinko kaplama hattı devreye alındı.</div></div></div>
+          <div class="timeline-item"><div class="tl-dot">2008</div><div><div class="tl-year">2008</div><div class="tl-text" data-i18n="tl.2008">Üretim alanı 2 katına çıkarıldı. Fosfat ve nikel kaplama hatları eklendi. ISO 9001 belgesi alındı.</div></div></div>
+          <div class="timeline-item"><div class="tl-dot">2013</div><div><div class="tl-year">2013</div><div class="tl-text" data-i18n="tl.2013">Geomet® lisanslı çinko lamel kaplama hattı kuruldu. Otomotiv sektörüne giriş.</div></div></div>
+          <div class="timeline-item"><div class="tl-dot">2018</div><div><div class="tl-year">2018</div><div class="tl-text" data-i18n="tl.2018">ISO 14001 Çevre Yönetim Sistemi sertifikası. Tam otomasyon yatırımları tamamlandı.</div></div></div>
+          <div class="timeline-item"><div class="tl-dot">2024</div><div><div class="tl-year">2024</div><div class="tl-text" data-i18n="tl.2024">20. yıl. 180+ çalışan, 500+ müşteri ve 50M+ parça/yıl kapasitesiyle sektör lideri.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="about-img-placeholder reveal"><div class="about-img-label" data-i18n="about.facility">TESİS FOTOĞRAFI</div></div>
+        <div class="stat-grid" style="margin-top:1px">
+          <div class="stat-block"><div class="stat-num">180<span class="stat-unit">+</span></div><div class="stat-lbl" data-i18n="spec.employees">Çalışan</div></div>
+          <div class="stat-block"><div class="stat-num">12K<span class="stat-unit">m²</span></div><div class="stat-lbl" data-i18n="spec.area">Üretim Alanı</div></div>
+          <div class="stat-block"><div class="stat-num">50<span class="stat-unit">M+</span></div><div class="stat-lbl" data-i18n="stat.parts">Parça / Yıl</div></div>
+          <div class="stat-block"><div class="stat-num">500<span class="stat-unit">+</span></div><div class="stat-lbl" data-i18n="stat.clients">Müşteri</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="section section-alt">
+    <div class="reveal"><p class="eyebrow" data-i18n="about.team_ey">Yönetim</p><h2 class="big-title" style="font-size:clamp(2.4rem,4vw,4rem)" data-i18n="about.team_title">YÖNETİM KURULU</h2></div>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="team-avatar">AK</div><div class="team-name">Ahmet Karahan</div><div class="team-role" data-i18n="team.ceo">Genel Müdür & Kurucu</div></div>
+      <div class="team-card reveal reveal-d1"><div class="team-avatar">MY</div><div class="team-name">Murat Yıldırım</div><div class="team-role" data-i18n="team.prod">Üretim Müdürü</div></div>
+      <div class="team-card reveal reveal-d2"><div class="team-avatar">FD</div><div class="team-name">Fatma Demir</div><div class="team-role" data-i18n="team.qa">Kalite Güvence Müdürü</div></div>
+      <div class="team-card reveal reveal-d3"><div class="team-avatar">EK</div><div class="team-name">Emre Kaya</div><div class="team-role" data-i18n="team.rnd">Ar-Ge & Mühendislik Müdürü</div></div>
+      <div class="team-card reveal reveal-d4"><div class="team-avatar">SÇ</div><div class="team-name">Selin Çelik</div><div class="team-role" data-i18n="team.sales">Satış & Pazarlama Müdürü</div></div>
+      <div class="team-card reveal"><div class="team-avatar">HÖ</div><div class="team-name">Hasan Öztürk</div><div class="team-role" data-i18n="team.log">Lojistik & Tedarik Müdürü</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<div id="page-services" class="page">
+  <div class="ph-hero" id="ph-services">
+    <div class="gh-bg-grid"></div><div class="gh-glow"></div>
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.services">Ana Sayfa / <em>Hizmetlerimiz</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="services.title">KAPLAMA HİZMETLERİ</h1>
+      <p class="gh-sub" data-i18n="services.sub">11 farklı kaplama türü ile her sektöre ve teknik gereksinimlere uygun yüzey işlem çözümleri.</p>
+      <div class="coating-stages" id="cs-services">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+      <div class="stage-desc-box"><div class="sdb-num" id="sdb-num-services">01</div><p class="sdb-text" id="sdb-text-services"></p></div>
+    </div>
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-services" width="440" height="440"></canvas>
+      <button class="replay-btn" id="replay-btn-services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button>
+    </div>
+  </div>
+  <section class="section">
+    <div class="reveal"><p class="eyebrow" data-i18n="services.list_ey">Kaplama Çeşitlerimiz</p><h2 class="big-title" data-i18n="services.list_title">KAPLAMA TÜRLERİ</h2></div>
+    <div class="coating-list">
+      <div class="coating-card reveal"><div class="c-num">01</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="8"/><line x1="22" y1="6" x2="22" y2="14"/><line x1="22" y1="30" x2="22" y2="38"/></svg><div class="c-name" data-i18n="svc.zinc">Elektrolitik Çinko Kaplama</div><p class="c-desc" data-i18n="svc.zinc_full">En yaygın kullanılan kaplama türü. Parlak, yarı parlak veya mat seçenekleriyle geniş uygulama aralığı. Kromat veya passivation ile desteklenebilir.</p><div class="c-tags"><span class="c-tag">5-25 μm</span><span class="c-tag">120-720h</span><span class="c-tag">ISO 4042</span><span class="c-tag">ASTM B633</span></div></div>
+      <div class="coating-card reveal reveal-d1"><div class="c-num">02</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="22" r="16"/><path d="M14 22 Q17 14 22 22 Q27 30 30 22"/><circle cx="22" cy="22" r="5"/></svg><div class="c-name" data-i18n="svc.znni">Elektrolitik Çinko-Nikel Kaplama</div><p class="c-desc" data-i18n="svc.znni_full">%12-15 nikel içeriğiyle üstün korozyon ve ısı direnci. Otomotiv egzoz sistemi ve fren bileşenlerinde tercih edilir.</p><div class="c-tags"><span class="c-tag">8-15 μm</span><span class="c-tag">720-1000h</span><span class="c-tag">VDA 235-105</span></div></div>
+      <div class="coating-card reveal"><div class="c-num">03</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="8" y="8" width="28" height="28" rx="2"/><path d="M14 24 L19 29 L30 17"/></svg><div class="c-name" data-i18n="svc.phosphate">Fosfat Kaplama</div><p class="c-desc" data-i18n="svc.phosphate_full">Boya altı primer uygulaması ve korozyon koruması. Kaba ve ince kristal yapı seçenekleriyle farklı boya sistemlerine uyum sağlar.</p><div class="c-tags"><span class="c-tag">2-20 g/m²</span><span class="c-tag">DIN 50942</span></div></div>
+      <div class="coating-card reveal reveal-d1"><div class="c-num">04</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 38 L22 6 L36 38"/><line x1="13" y1="27" x2="31" y2="27"/></svg><div class="c-name" data-i18n="svc.geomet">Çinko Lamel Kaplama (Geomet®)</div><p class="c-desc" data-i18n="svc.geomet_full">Krom içermeyen, çevre dostu teknoloji. Yüksek korozyon direnci ve ısı stabilitesiyle otomotiv OEM onaylı kaplama sistemi.</p><div class="c-tags"><span class="c-tag">8-20 μm</span><span class="c-tag">720-1500h</span><span class="c-tag">ISO 10683</span><span class="c-tag">RoHS</span></div></div>
+      <div class="coating-card reveal"><div class="c-num">05</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="14" r="8"/><rect x="14" y="26" width="16" height="12" rx="2"/><line x1="22" y1="22" x2="22" y2="26"/></svg><div class="c-name" data-i18n="svc.topcoat">Üstlak (Topcoat) Uygulamaları</div><p class="c-desc" data-i18n="svc.topcoat_full">Kaplama üzerine ek koruyucu katmanlar. Torque-tension özellikleri, yağlayıcı ve sürtünme katsayısı düzenleyici çözümler.</p><div class="c-tags"><span class="c-tag">µ: 0.08-0.16</span><span class="c-tag">VDA 235-204</span></div></div>
+      <div class="coating-card reveal reveal-d1"><div class="c-num">06</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="10" y="18" width="24" height="18" rx="2"/><path d="M16 18 V13 Q22 5 28 13 V18"/><circle cx="22" cy="27" r="4"/></svg><div class="c-name" data-i18n="svc.paint">Toz / Yaş Boya</div><p class="c-desc" data-i18n="svc.paint_full">Elektrostatik toz boya ve ıslak boya sistemleri. RAL renk skalası ile dekoratif ve koruyucu çift fonksiyon.</p><div class="c-tags"><span class="c-tag">60-120 μm</span><span class="c-tag">RAL</span><span class="c-tag">EN 13438</span></div></div>
+      <div class="coating-card reveal"><div class="c-num">07</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 6 L38 14 L38 22 L22 30 L6 22 L6 14 Z"/><circle cx="22" cy="18" r="4"/></svg><div class="c-name" data-i18n="svc.micro">Mikrokapsüllü Kilitli Boya</div><p class="c-desc" data-i18n="svc.micro_full">Cıvata ve somunlarda ikinci kez montaj sonrası sökülmeyi engelleyen mikrokapsüllü yapıştırıcı kaplama.</p><div class="c-tags"><span class="c-tag">ISO 2320</span><span class="c-tag">DIN 267-28</span></div></div>
+      <div class="coating-card reveal reveal-d1"><div class="c-num">08</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="22" r="16"/><path d="M15 22 L19 26 L29 16"/><circle cx="22" cy="22" r="8"/></svg><div class="c-name" data-i18n="svc.patch">Plastik Patch</div><p class="c-desc" data-i18n="svc.patch_full">Vidaların belirli bölgelerine uygulanan polimer patch ile self-locking özellik. Otomotiv ve elektronik için ideal.</p><div class="c-tags"><span class="c-tag">ISO 10513</span><span class="c-tag">Self-Locking</span></div></div>
+      <div class="coating-card reveal"><div class="c-num">09</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 28 Q15 10 22 20 Q29 30 36 14"/><line x1="8" y1="38" x2="36" y2="38"/></svg><div class="c-name" data-i18n="svc.hydrogen">Hidrojen Gevrekliği Giderme</div><p class="c-desc" data-i18n="svc.hydrogen_full">Yüksek mukavemetli çelik parçaların kaplama sonrası hidrojen gevrekliğini gidermek için ısıl işlem (≥200°C, 8-24 saat).</p><div class="c-tags"><span class="c-tag">ISO 9588</span><span class="c-tag">ASTM F519</span><span class="c-tag">≥10.9</span></div></div>
+      <div class="coating-card reveal reveal-d1"><div class="c-num">10</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="14" width="32" height="20" rx="2"/><line x1="14" y1="14" x2="14" y2="34"/><line x1="22" y1="14" x2="22" y2="34"/><line x1="30" y1="14" x2="30" y2="34"/></svg><div class="c-name" data-i18n="svc.clean">Teknik Temizlik</div><p class="c-desc" data-i18n="svc.clean_full">Kaplama sonrası partikül kirliliğinin ölçülmesi ve belirlenen limitlerin altına indirilmesi. Otomotiv cleanliness standartları.</p><div class="c-tags"><span class="c-tag">VDA 19</span><span class="c-tag">ISO 16232</span></div></div>
+      <div class="coating-card reveal"><div class="c-num">11</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 34 L10 16 L22 8 L34 16 L34 34"/><line x1="16" y1="34" x2="16" y2="24"/><line x1="28" y1="34" x2="28" y2="24"/><line x1="16" y1="24" x2="28" y2="24"/></svg><div class="c-name" data-i18n="svc.mask">Diş Maskeleme</div><p class="c-desc" data-i18n="svc.mask_full">Kaplama sırasında vida dişlerinin korunması. Tolerans hassasiyeti gerektiren yüksek mukavemetli bağlantılar için.</p><div class="c-tags"><span class="c-tag">M3–M64</span><span class="c-tag">Yüksek Hassasiyet</span></div></div>
+      <div class="coating-card reveal reveal-d1"><div class="c-num">+</div><svg class="c-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="22" r="14"/><line x1="22" y1="14" x2="22" y2="30"/><line x1="14" y1="22" x2="30" y2="22"/></svg><div class="c-name" data-i18n="svc.custom">Özel Geliştirme</div><p class="c-desc" data-i18n="svc.custom_full">Ar-Ge ekibimizle müşteri özel proses geliştirme ve pilot uygulama hizmeti. Mevcut çözümlerin yeterli olmadığı durumlar için.</p><div class="c-tags"><span class="c-tag">Ar-Ge</span><span class="c-tag">Pilot Üretim</span></div></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="section section-alt">
+    <div class="reveal"><p class="eyebrow" data-i18n="services.table_ey">Teknik Veriler</p><h2 class="big-title" style="font-size:clamp(2rem,3.5vw,3.5rem)" data-i18n="services.table_title">KOMPARATİF TABLO</h2></div>
+    <div class="reveal" style="margin-top:2rem">
+      <div class="spec-table-title" data-i18n="services.table_sub">Kaplama Türleri – Teknik Karşılaştırma</div>
+      <div style="overflow-x:auto;border:1px solid var(--gold-line)">
+        <table class="data-table">
+          <thead><tr><th data-i18n="table.type">Kaplama Türü</th><th data-i18n="table.thick">Kalınlık (μm)</th><th data-i18n="table.salt">Tuz Spreyi (h)</th><th data-i18n="table.temp">Sıcaklık Direnci</th><th>RoHS</th><th data-i18n="table.sector">Tipik Sektör</th></tr></thead>
+          <tbody>
+            <tr><td data-i18n="tbl.zinc_blue">El. Çinko (Mavi Kromat)</td><td>8-12</td><td>120-240</td><td>120°C</td><td>✓</td><td data-i18n="tbl.general">Genel Endüstri</td></tr>
+            <tr><td data-i18n="tbl.zinc_yellow">El. Çinko (Sarı Kromat)</td><td>8-12</td><td>240-480</td><td>120°C</td><td>—</td><td data-i18n="tbl.machine">Makine, İnşaat</td></tr>
+            <tr><td data-i18n="tbl.znni">El. Çinko-Nikel</td><td>8-15</td><td>720-1000</td><td>200°C</td><td>✓</td><td data-i18n="tbl.oem">Otomotiv OEM</td></tr>
+            <tr><td>Geomet® 500</td><td>8-10</td><td>720</td><td>300°C</td><td>✓</td><td data-i18n="tbl.auto_air">Otomotiv, Havacılık</td></tr>
+            <tr><td>Geomet® 321</td><td>12-15</td><td>1000</td><td>300°C</td><td>✓</td><td data-i18n="tbl.oem">Otomotiv OEM</td></tr>
+            <tr><td data-i18n="tbl.phosphate">Çinko Fosfat</td><td>2-20 g/m²</td><td>—</td><td>—</td><td>✓</td><td data-i18n="tbl.primer">Boya Altı</td></tr>
+            <tr><td data-i18n="tbl.powder">Toz Boya</td><td>60-120</td><td>500</td><td>180°C</td><td>✓</td><td data-i18n="tbl.furniture">Mobilya, İnşaat</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<div id="page-gallery" class="page">
+
+  <!-- GALLERY HERO: two-column like home -->
+  <div id="gallery-hero">
+    <div class="gh-bg-grid"></div>
+    <div class="gh-glow"></div>
+
+    <!-- LEFT: text -->
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.gallery">Ana Sayfa / <em>Galeri</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="gallery.page_title">KAPLAMA GALERİSİ</h1>
+      <p class="gh-sub" data-i18n="gallery.page_sub">Farklı kaplama türlerinin görsel referansları — yüzey kalitesi, renk ve doku örnekleri.</p>
+
+      <!-- Stage progress pills -->
+      <div class="coating-stages" id="cs-gallery">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+
+      <!-- Stage description -->
+      <div class="stage-desc-box">
+        <div class="sdb-num" id="sdb-num-gallery">01</div>
+        <p class="sdb-text" id="sdb-text-gallery"></p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Canvas animation -->
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-gallery" width="440" height="440"></canvas>
+      <!-- replay button -->
+      <button class="replay-btn" id="replay-btn-gallery" title="Tekrar Oynat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <style>
+  /* ── GALLERY HERO LAYOUT ── */
+  #gallery-hero{
+    min-height:520px;
+    display:grid;grid-template-columns:1fr 1fr;
+    align-items:center;
+    padding:5rem 5vw 4rem;
+    position:relative;overflow:hidden;
+    background:var(--bg);
+    border-bottom:1px solid var(--gold-line);
+  }
+  .gh-bg-grid{
+    position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(90deg,transparent 0,transparent 79px,var(--hero-grid) 80px),
+      repeating-linear-gradient(0deg,transparent 0,transparent 79px,var(--hero-grid) 80px);
+    pointer-events:none;
+  }
+  .gh-glow{
+    position:absolute;width:700px;height:700px;border-radius:50%;
+    background:radial-gradient(circle,var(--hero-glow) 0%,transparent 65%);
+    right:-150px;top:50%;transform:translateY(-50%);pointer-events:none;
+  }
+  .gh-left{position:relative;z-index:2;}
+  .gh-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(3.5rem,6vw,6.5rem);
+    line-height:.92;letter-spacing:.02em;
+    color:var(--text-head);margin-bottom:1rem;margin-top:.6rem;
+  }
+  .gh-sub{
+    font-size:1rem;line-height:1.75;color:var(--text-body);
+    font-weight:300;max-width:430px;margin-bottom:2rem;
+  }
+
+  /* Stage pills */
+  .coating-stages{
+    display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.6rem;
+  }
+  .cs-pill{
+    display:flex;align-items:center;gap:.75rem;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--text-muted);
+    padding:.3rem 0;
+    cursor:default;transition:color .3s;
+  }
+  .cs-pill.active{color:var(--gold);}
+  .cs-pill.done{color:var(--text-body);}
+  .cs-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--bg-4);border:1px solid var(--gold-line);
+    flex-shrink:0;transition:background .3s,border-color .3s;
+  }
+  .cs-pill.active .cs-dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(200,146,42,.5);}
+  .cs-pill.done .cs-dot{background:rgba(200,146,42,.35);border-color:rgba(200,146,42,.35);}
+
+  /* Stage description box */
+  .stage-desc-box{
+    display:flex;gap:1rem;align-items:flex-start;
+    padding:1rem 1.4rem;
+    border-left:2px solid var(--gold);
+    background:var(--bg-2);
+    min-height:60px;
+  }
+  .sdb-num{
+    font-family:'Bebas Neue',sans-serif;font-size:1.6rem;
+    color:var(--gold);line-height:1;flex-shrink:0;
+  }
+  .sdb-text{
+    font-size:.85rem;line-height:1.65;color:var(--text-body);font-weight:300;
+  }
+
+  /* Canvas right panel */
+  .gh-right{
+    position:relative;z-index:2;
+    display:flex;align-items:center;justify-content:center;
+  }
+  #bolt-canvas-gallery{
+    max-width:100%;max-height:440px;
+    filter:drop-shadow(0 0 40px rgba(200,146,42,.12));
+  }
+  .replay-btn{
+    position:absolute;bottom:0;right:0;
+    width:40px;height:40px;
+    background:var(--bg-2);
+    border:1px solid var(--gold-line);
+    color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:background .2s,border-color .2s;
+    opacity:0;pointer-events:none;
+  }
+  .replay-btn.show{opacity:1;pointer-events:auto;}
+  .replay-btn:hover{background:var(--gold-dim);border-color:var(--gold);}
+  .replay-btn svg{width:16px;height:16px;}
+
+  @media(max-width:860px){
+    #gallery-hero{grid-template-columns:1fr;min-height:auto;padding-bottom:2rem;}
+    .gh-right{display:none;}
+  }
+  </style>
+
+  <style>
+  /* ── Shared page-hero layout (all non-home pages) ── */
+  .ph-hero{
+    min-height:520px;
+    display:grid;grid-template-columns:1fr 1fr;
+    align-items:center;
+    padding:5rem 5vw 4rem;
+    position:relative;overflow:hidden;
+    background:var(--bg);
+    border-bottom:1px solid var(--gold-line);
+  }
+  .bolt-canvas{
+    max-width:100%;max-height:440px;
+    filter:drop-shadow(0 0 40px rgba(200,146,42,.12));
+  }
+  /* clickable pills */
+  .cs-pill{cursor:pointer;}
+  .cs-pill:hover .cs-label{color:var(--gold-lt);}
+  .cs-pill:hover .cs-dot{border-color:var(--gold-lt);}
+  @media(max-width:860px){
+    .ph-hero{grid-template-columns:1fr;min-height:auto;padding-bottom:2rem;}
+    .ph-hero .gh-right{display:none;}
+  }
+  </style>
+  <section class="section">
+    <div class="gallery-controls reveal" id="gallery-filters">
+      <button class="gallery-filter active" data-filter="all" data-i18n="filter.all">Tümü</button>
+      <button class="gallery-filter" data-filter="zinc" data-i18n="filter.zinc">Çinko Kaplama</button>
+      <button class="gallery-filter" data-filter="phosphate" data-i18n="filter.phosphate">Fosfat Kaplama</button>
+      <button class="gallery-filter" data-filter="geomet" data-i18n="filter.geomet">Geomet® / Lamel</button>
+      <button class="gallery-filter" data-filter="nickel" data-i18n="filter.nickel">Nikel & Özel</button>
+      <button class="gallery-filter" data-filter="paint" data-i18n="filter.paint">Boya Uygulamaları</button>
+      <button class="gallery-filter" data-filter="fastener" data-i18n="filter.fastener">Bağlantı Elemanları</button>
+    </div>
+    <div class="gallery-masonry reveal" id="gallery-grid"></div>
+  </section>
+</div>
+
+<!-- ═══════════════ QUALITY ═══════════════ -->
+<div id="page-quality" class="page">
+  <div class="ph-hero" id="ph-quality">
+    <div class="gh-bg-grid"></div><div class="gh-glow"></div>
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.quality">Ana Sayfa / <em>Kalite</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="quality.title">KALİTE & SERTİFİKASYON</h1>
+      <p class="gh-sub" data-i18n="quality.sub">Uluslararası standartlara tam uyum, belgelenmiş kalite güvencesi ve sürekli iyileştirme.</p>
+      <div class="coating-stages" id="cs-quality">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+      <div class="stage-desc-box"><div class="sdb-num" id="sdb-num-quality">01</div><p class="sdb-text" id="sdb-text-quality"></p></div>
+    </div>
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-quality" width="440" height="440"></canvas>
+      <button class="replay-btn" id="replay-btn-quality"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button>
+    </div>
+  </div>
+  <section class="section">
+    <div class="reveal"><p class="eyebrow" data-i18n="quality.cert_ey">Sertifikalarımız</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,4rem)" data-i18n="quality.cert_title">ULUSLARARASI SERTİFİKALAR</h2></div>
+    <div class="cert-grid">
+      <div class="cert-card reveal"><div class="cert-badge-big">ISO 9001</div><div class="cert-card-name">ISO 9001:2015</div><p class="cert-card-desc" data-i18n="cert.9001">Kalite Yönetim Sistemi. Tüm üretim süreçlerimiz bu standart kapsamında belgelenmiş ve denetlenmektedir.</p></div>
+      <div class="cert-card reveal reveal-d1"><div class="cert-badge-big">ISO 14001</div><div class="cert-card-name">ISO 14001:2015</div><p class="cert-card-desc" data-i18n="cert.14001">Çevre Yönetim Sistemi. Sürdürülebilir üretim ve çevresel etkimizi minimize etme hedefiyle tüm süreçlerimizi yönetiyoruz.</p></div>
+      <div class="cert-card reveal reveal-d2"><div class="cert-badge-big">IATF</div><div class="cert-card-name">IATF 16949:2016</div><p class="cert-card-desc" data-i18n="cert.iatf">Otomotiv Kalite Yönetim Sistemi. Ana sanayi tedarikçisi olarak otomotiv sektörünün en kritik kalite standardını karşılıyoruz.</p></div>
+      <div class="cert-card reveal"><div class="cert-badge-big">RoHS</div><div class="cert-card-name">RoHS / REACH</div><p class="cert-card-desc" data-i18n="cert.rohs">AB direktiflerine tam uyumlu malzeme ve proses kullanımı. Zararlı madde içermeyen, çevre dostu kaplama çözümleri.</p></div>
+      <div class="cert-card reveal reveal-d1"><div class="cert-badge-big">DIN EN</div><div class="cert-card-name">DIN EN ISO 4042</div><p class="cert-card-desc" data-i18n="cert.din">Bağlantı elemanları için elektrolitik çinko ve çinko alaşım kaplamalar standardı.</p></div>
+      <div class="cert-card reveal reveal-d2"><div class="cert-badge-big">ASTM</div><div class="cert-card-name">ASTM B633 / F519</div><p class="cert-card-desc" data-i18n="cert.astm">Elektrolitik çinko kaplama ve hidrojen gevrekliği test standartları. ABD ve uluslararası pazar sertifikasyonu.</p></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="section section-alt">
+    <div class="reveal"><p class="eyebrow" data-i18n="quality.test_ey">Test Altyapımız</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,4rem)" data-i18n="quality.test_title">KALİTE KONTROL TESTLERİ</h2></div>
+    <div class="test-grid">
+      <div class="test-card reveal"><div class="test-name" data-i18n="test.salt">Tuz Spreyi Testi</div><div><span class="test-val">1000</span><span class="test-unit" data-i18n="test.salt_u">saat kapasiteli</span></div><div class="test-desc" data-i18n="test.salt_d">ISO 9227 standardına göre korozyon direnci doğrulaması.</div></div>
+      <div class="test-card reveal reveal-d1"><div class="test-name" data-i18n="test.xrf">XRF Kalınlık Ölçümü</div><div><span class="test-val">±0.1</span><span class="test-unit">μm</span></div><div class="test-desc" data-i18n="test.xrf_d">X-Ray floresans teknolojisiyle tahribatsız kalınlık ve alaşım analizi.</div></div>
+      <div class="test-card reveal"><div class="test-name" data-i18n="test.h2">Hidrojen Gevrekliği Testi</div><div><span class="test-val">ASTM</span><span class="test-unit">F519</span></div><div class="test-desc" data-i18n="test.h2_d">Yüksek mukavemetli parçalar için sustained load testi.</div></div>
+      <div class="test-card reveal reveal-d1"><div class="test-name" data-i18n="test.torque">Torque-Tension</div><div><span class="test-val">µ: 0.08</span><span class="test-unit">–0.16</span></div><div class="test-desc" data-i18n="test.torque_d">VDA 235-204 uyumlu sürtünme katsayısı ölçümü.</div></div>
+      <div class="test-card reveal"><div class="test-name" data-i18n="test.clean">Teknik Temizlik</div><div><span class="test-val">VDA 19</span></div><div class="test-desc" data-i18n="test.clean_d">Partikül kirliliği analizi ve raporlaması.</div></div>
+      <div class="test-card reveal reveal-d1"><div class="test-name" data-i18n="test.visual">Görsel Muayene</div><div><span class="test-val">%100</span><span class="test-unit" data-i18n="test.visual_u">optik kontrol</span></div><div class="test-desc" data-i18n="test.visual_d">Yüzey kusurları ve boyutsal tolerans kontrolü.</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ SUSTAINABILITY ═══════════════ -->
+<div id="page-sustainability" class="page">
+  <div class="ph-hero" id="ph-sustainability">
+    <div class="gh-bg-grid"></div><div class="gh-glow"></div>
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.sustain">Ana Sayfa / <em>Sürdürülebilirlik</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="sustain.title">SÜRDÜRÜLEBİLİRLİK</h1>
+      <p class="gh-sub" data-i18n="sustain.sub">Geleceğe yönelik sorumlu üretim. Çevre, toplum ve ekonomi için dengeli yaklaşım.</p>
+      <div class="coating-stages" id="cs-sustainability">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+      <div class="stage-desc-box"><div class="sdb-num" id="sdb-num-sustainability">01</div><p class="sdb-text" id="sdb-text-sustainability"></p></div>
+    </div>
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-sustainability" width="440" height="440"></canvas>
+      <button class="replay-btn" id="replay-btn-sustainability"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button>
+    </div>
+  </div>
+  <section class="section">
+    <div class="reveal"><p class="eyebrow" data-i18n="sustain.ey">Yaklaşımımız</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,4rem)" data-i18n="sustain.env_title">ÇEVRE POLİTİKAMIZ</h2><p class="body-text" style="max-width:680px;margin-bottom:0" data-i18n="sustain.env_p">Mars Kaplama olarak çevre yönetimini üretim süreçlerimizin ayrılmaz bir parçası olarak görüyoruz. ISO 14001 sertifikalı sistemimizle her üretim kararında çevresel etkiyi değerlendiriyoruz.</p></div>
+    <div class="pillar-grid">
+      <div class="pillar-card reveal"><svg class="pillar-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M26 6 C14 6 6 16 6 26 C6 36 14 46 26 46 C38 46 46 36 46 26"/><path d="M30 10 Q40 8 42 18 Q32 18 30 10Z" fill="rgba(200,146,42,.15)"/></svg><div class="pillar-title" data-i18n="pillar.env">Çevre Koruma</div><p class="pillar-text" data-i18n="pillar.env_d">Atıksu arıtma ve kapalı devre kimyasal geri kazanım sistemiyle çevresel ayak izimizi minimize ediyoruz.</p></div>
+      <div class="pillar-card reveal reveal-d1"><svg class="pillar-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="26" cy="20" r="10"/><path d="M10 46 Q10 34 26 34 Q42 34 42 46"/></svg><div class="pillar-title" data-i18n="pillar.people">Çalışan Refahı</div><p class="pillar-text" data-i18n="pillar.people_d">İş sağlığı ve güvenliği önceliğimizdir. Düzenli eğitim ve sağlık taramaları ile güvenli çalışma ortamı.</p></div>
+      <div class="pillar-card reveal reveal-d2"><svg class="pillar-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="20" width="40" height="26" rx="2"/><path d="M16 20 V14 Q26 4 36 14 V20"/><circle cx="26" cy="33" r="6"/></svg><div class="pillar-title" data-i18n="pillar.energy">Enerji Verimliliği</div><p class="pillar-text" data-i18n="pillar.energy_d">Enerji izleme sistemleri ve verimlilik projeleriyle yıldan yıla tüketimimizi azaltıyoruz.</p></div>
+      <div class="pillar-card reveal"><svg class="pillar-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M26 6 L46 16 L46 30 Q46 42 26 48 Q6 42 6 30 L6 16 Z"/><path d="M18 26 L23 31 L34 20"/></svg><div class="pillar-title" data-i18n="pillar.safety">Ürün Güvenliği</div><p class="pillar-text" data-i18n="pillar.safety_d">RoHS ve REACH direktiflerine tam uyum. Krom-VI ve kısıtlı madde içermeyen kaplama alternatifleri.</p></div>
+      <div class="pillar-card reveal reveal-d1"><svg class="pillar-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="26" cy="26" r="20"/><path d="M18 26 Q22 16 26 26 Q30 36 34 26"/><line x1="6" y1="26" x2="46" y2="26"/></svg><div class="pillar-title" data-i18n="pillar.supply">Tedarik Sorumluluğu</div><p class="pillar-text" data-i18n="pillar.supply_d">Tedarikçilerimizi sürdürülebilirlik kriterleriyle değerlendiriyor, etik kaynakları tercih ediyoruz.</p></div>
+      <div class="pillar-card reveal reveal-d2"><svg class="pillar-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 40 L10 20 L26 10 L42 20 L42 40"/><rect x="18" y="28" width="16" height="12"/></svg><div class="pillar-title" data-i18n="pillar.community">Toplumsal Katkı</div><p class="pillar-text" data-i18n="pillar.community_d">Yerel eğitim kurumlarıyla işbirliği ve staj programları ile bulunduğumuz topluluğa değer katıyoruz.</p></div>
+    </div>
+    <div class="env-metrics">
+      <div class="env-m reveal"><div class="env-val">-28%</div><div class="env-lbl" data-i18n="env.water">Su Tüketimi (5 yılda)</div></div>
+      <div class="env-m reveal reveal-d1"><div class="env-val">-35%</div><div class="env-lbl" data-i18n="env.energy">Enerji Tüketimi (5 yılda)</div></div>
+      <div class="env-m reveal reveal-d2"><div class="env-val">%95</div><div class="env-lbl" data-i18n="env.chem">Kimyasal Geri Kazanım</div></div>
+      <div class="env-m reveal reveal-d3"><div class="env-val" data-i18n="env.zero">Sıfır</div><div class="env-lbl" data-i18n="env.acc">İSG Kazası (Son 3 Yıl)</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ CAREER ═══════════════ -->
+<div id="page-career" class="page">
+  <div class="ph-hero" id="ph-career">
+    <div class="gh-bg-grid"></div><div class="gh-glow"></div>
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.career">Ana Sayfa / <em>Kariyer</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="career.title">KARİYER</h1>
+      <p class="gh-sub" data-i18n="career.sub">Büyüyen ekibimizin parçası olun. Açık pozisyonlar ve Mars Kaplama'da çalışmanın avantajları.</p>
+      <div class="coating-stages" id="cs-career">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+      <div class="stage-desc-box"><div class="sdb-num" id="sdb-num-career">01</div><p class="sdb-text" id="sdb-text-career"></p></div>
+    </div>
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-career" width="440" height="440"></canvas>
+      <button class="replay-btn" id="replay-btn-career"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button>
+    </div>
+  </div>
+  <section class="section">
+    <div class="reveal"><p class="eyebrow" data-i18n="career.benefits_ey">Neden Mars Kaplama?</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,4rem)" data-i18n="career.benefits_title">ÇALIŞAN AVANTAJLARI</h2></div>
+    <div class="benefits-grid">
+      <div class="benefit-item reveal"><div class="benefit-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div><div class="benefit-title" data-i18n="benefit.salary">Rekabetçi Maaş</div><p class="benefit-text" data-i18n="benefit.salary_d">Piyasa üstü ücret politikası ve yıllık performans bazlı değerlendirme.</p></div></div>
+      <div class="benefit-item reveal reveal-d1"><div class="benefit-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="benefit-title" data-i18n="benefit.career">Kariyer Gelişimi</div><p class="benefit-text" data-i18n="benefit.career_d">Eğitim bütçesi, sertifikasyon desteği ve iç terfi önceliği.</p></div></div>
+      <div class="benefit-item reveal reveal-d2"><div class="benefit-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="benefit-title" data-i18n="benefit.health">Sağlık Sigortası</div><p class="benefit-text" data-i18n="benefit.health_d">Özel sağlık sigortası ve aile bireylerini kapsayan ek teminatlar.</p></div></div>
+      <div class="benefit-item reveal"><div class="benefit-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="benefit-title" data-i18n="benefit.flex">Esnek Çalışma</div><p class="benefit-text" data-i18n="benefit.flex_d">Uygun pozisyonlarda hibrit çalışma ve esnek çalışma saatleri.</p></div></div>
+      <div class="benefit-item reveal reveal-d1"><div class="benefit-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div><div class="benefit-title" data-i18n="benefit.social">Sosyal Haklar</div><p class="benefit-text" data-i18n="benefit.social_d">Yemek, servis, yakacak yardımı ve özel gün hediye desteği.</p></div></div>
+      <div class="benefit-item reveal reveal-d2"><div class="benefit-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="benefit-title" data-i18n="benefit.team">Takım Ruhu</div><p class="benefit-text" data-i18n="benefit.team_d">Takım etkinlikleri, şirket gezileri ve güçlü ekip kültürü.</p></div></div>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="section section-alt">
+    <div class="reveal"><p class="eyebrow" data-i18n="career.jobs_ey">Açık Pozisyonlar</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,4rem)" data-i18n="career.jobs_title">İŞ İLANLARIMIZ</h2></div>
+    <div class="jobs-list">
+      <div class="job-item reveal"><div><div class="job-title" data-i18n="job.1">Kaplama Proses Mühendisi</div><div class="job-meta"><span class="job-tag open" data-i18n="job.active">Aktif İlan</span><span class="job-tag" data-i18n="job.full">Tam Zamanlı</span><span class="job-tag">Manisa</span></div></div><div class="job-dept" data-i18n="dept.prod">Üretim / Ar-Ge</div></div>
+      <div class="job-item reveal"><div><div class="job-title" data-i18n="job.2">Kalite Kontrol Uzmanı</div><div class="job-meta"><span class="job-tag open" data-i18n="job.active">Aktif İlan</span><span class="job-tag" data-i18n="job.full">Tam Zamanlı</span><span class="job-tag">Manisa</span></div></div><div class="job-dept" data-i18n="dept.qa">Kalite Güvence</div></div>
+      <div class="job-item reveal"><div><div class="job-title" data-i18n="job.3">Teknik Satış Mühendisi</div><div class="job-meta"><span class="job-tag open" data-i18n="job.active">Aktif İlan</span><span class="job-tag" data-i18n="job.full">Tam Zamanlı</span><span class="job-tag" data-i18n="job.turkey">Türkiye Geneli</span></div></div><div class="job-dept" data-i18n="dept.sales">Satış & Pazarlama</div></div>
+      <div class="job-item reveal"><div><div class="job-title" data-i18n="job.4">Lojistik Koordinatörü</div><div class="job-meta"><span class="job-tag" data-i18n="job.passive">Pasif</span><span class="job-tag" data-i18n="job.full">Tam Zamanlı</span><span class="job-tag">Manisa</span></div></div><div class="job-dept" data-i18n="dept.log">Lojistik</div></div>
+      <div class="job-item reveal"><div><div class="job-title" data-i18n="job.5">Üretim Operatörü</div><div class="job-meta"><span class="job-tag open" data-i18n="job.active">Aktif İlan</span><span class="job-tag" data-i18n="job.shift">Vardiya</span><span class="job-tag">Manisa</span></div></div><div class="job-dept" data-i18n="dept.prod2">Üretim</div></div>
+    </div>
+    <div style="margin-top:2.5rem;padding:2rem;background:var(--bg-2);border:1px solid var(--gold-line)" class="reveal">
+      <p class="eyebrow" data-i18n="career.open_ey">Açık İlan Yoksa</p>
+      <p class="body-text" style="margin-bottom:1.4rem" data-i18n="career.open_p">Uygun pozisyon göremiyorsanız özgeçmişinizi bize gönderin. Ekibimize katılmak isteyenleri her zaman değerlendiriyoruz.</p>
+      <button class="btn btn-gold btn-sm" onclick="showPage('contact')" data-i18n="career.send_cv">Özgeçmiş Gönder →</button>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<div id="page-contact" class="page">
+  <div class="ph-hero" id="ph-contact">
+    <div class="gh-bg-grid"></div><div class="gh-glow"></div>
+    <div class="gh-left">
+      <div class="breadcrumb" data-i18n-html="breadcrumb.contact">Ana Sayfa / <em>İletişim</em></div>
+      <p class="hero-eyebrow" data-i18n="gallery.page_eyebrow">Kaplama Süreci</p>
+      <h1 class="gh-title" data-i18n="contact.title">İLETİŞİM & TEKLİF</h1>
+      <p class="gh-sub" data-i18n="contact.sub">Teknik sorularınız, teklif talepleriniz veya örnek kaplama siparişleri için ekibimizle iletişime geçin.</p>
+      <div class="coating-stages" id="cs-contact">
+        <div class="cs-pill active" data-stage="0"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.0">Yağlı Cıvata</span></div>
+        <div class="cs-pill" data-stage="1"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.1">Yağ Giderme</span></div>
+        <div class="cs-pill" data-stage="2"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.2">Asitleme</span></div>
+        <div class="cs-pill" data-stage="3"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.3">Kumlama</span></div>
+        <div class="cs-pill" data-stage="4"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.4">Kaplama</span></div>
+        <div class="cs-pill" data-stage="5"><span class="cs-dot"></span><span class="cs-label" data-i18n="stage.5">Bitmiş Ürün</span></div>
+      </div>
+      <div class="stage-desc-box"><div class="sdb-num" id="sdb-num-contact">01</div><p class="sdb-text" id="sdb-text-contact"></p></div>
+    </div>
+    <div class="gh-right">
+      <canvas class="bolt-canvas" id="bolt-canvas-contact" width="440" height="440"></canvas>
+      <button class="replay-btn" id="replay-btn-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></button>
+    </div>
+  </div>
+  <section class="section">
+    <div class="contact-layout">
+      <div>
+        <div class="reveal"><p class="eyebrow" data-i18n="contact.info_ey">İletişim Bilgileri</p><h2 class="big-title" style="font-size:clamp(2.2rem,4vw,4rem)" data-i18n="contact.reach">BİZE ULAŞIN</h2><p class="body-text" data-i18n="contact.reach_d">Teknik ekibimiz kaplama türü seçimi, teknik şartname ve teklif konularında destek vermek için hazır.</p></div>
+        <div class="contact-info-block reveal"><div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="ci-label" data-i18n="contact.addr_l">Adres</div><div class="ci-val">Manisa OSB, 1. Cadde No:XX<br>45030 Manisa / Türkiye</div></div></div>
+        <div class="contact-info-block reveal"><div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.32a2 2 0 011.99-1.8h3a2 2 0 012 1.72 12 12 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 9.91a16 16 0 006.06 6.06l.97-.97a2 2 0 012.11-.45 12 12 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="ci-label" data-i18n="contact.phone_l">Telefon</div><div class="ci-val">+90 236 000 00 00<br>+90 532 000 00 00</div></div></div>
+        <div class="contact-info-block reveal"><div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="ci-label" data-i18n="contact.email_l">E-Posta</div><div class="ci-val">info@marskaplama.com.tr<br>sales@marskaplama.com.tr</div></div></div>
+        <div class="contact-info-block reveal"><div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="ci-label" data-i18n="contact.hours_l">Çalışma Saatleri</div><div class="ci-val" data-i18n="contact.hours_v">Pzt–Cum: 08:00–18:00 | Cmt: 08:00–13:00</div></div></div>
+        <div class="map-placeholder reveal"><div style="position:relative;z-index:1;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.1em;color:var(--gold-line)" data-i18n="contact.map">HARİTA</div></div></div>
+      </div>
+      <div class="contact-form-box reveal">
+        <p class="eyebrow" style="margin-bottom:1.2rem" data-i18n="contact.form_ey">Teklif Talebi</p>
+        <div class="cf-form">
+          <div class="cf-row">
+            <div class="cf-group"><label class="cf-label" data-i18n="form.name">Ad Soyad *</label><input class="cf-input" type="text" data-i18n-ph="form.name_ph" placeholder="Ad Soyad"></div>
+            <div class="cf-group"><label class="cf-label" data-i18n="form.company">Firma *</label><input class="cf-input" type="text" data-i18n-ph="form.company_ph" placeholder="Firma Adı"></div>
+          </div>
+          <div class="cf-row">
+            <div class="cf-group"><label class="cf-label" data-i18n="form.phone">Telefon *</label><input class="cf-input" type="tel" placeholder="+90 5XX XXX XX XX"></div>
+            <div class="cf-group"><label class="cf-label" data-i18n="form.email">E-Posta *</label><input class="cf-input" type="email" placeholder="email@firma.com"></div>
+          </div>
+          <div class="cf-group"><label class="cf-label" data-i18n="form.coating">Kaplama Türü *</label>
+            <select class="cf-select">
+              <option value="" disabled selected data-i18n="form.coating_ph">Kaplama türü seçin</option>
+              <option data-i18n="svc.zinc">Elektrolitik Çinko Kaplama</option>
+              <option data-i18n="svc.znni">Elektrolitik Çinko-Nikel Kaplama</option>
+              <option data-i18n="svc.phosphate">Fosfat Kaplama</option>
+              <option data-i18n="svc.geomet">Geomet® / Çinko Lamel Kaplama</option>
+              <option data-i18n="svc.topcoat">Üstlak (Topcoat)</option>
+              <option data-i18n="svc.paint">Toz / Yaş Boya</option>
+              <option data-i18n="svc.micro">Mikrokapsüllü Kilitli Boya</option>
+              <option data-i18n="svc.hydrogen">Hidrojen Gevrekliği Giderme</option>
+              <option data-i18n="svc.clean">Teknik Temizlik</option>
+              <option data-i18n="svc.patch">Plastik Patch</option>
+              <option data-i18n="svc.mask">Diş Maskeleme</option>
+              <option data-i18n="svc.custom">Özel Geliştirme</option>
+            </select>
+          </div>
+          <div class="cf-row">
+            <div class="cf-group"><label class="cf-label" data-i18n="form.qty">Tahmini Miktar</label><input class="cf-input" type="text" data-i18n-ph="form.qty_ph" placeholder="Örn: 50.000 adet/ay"></div>
+            <div class="cf-group"><label class="cf-label" data-i18n="form.size">Parça Boyutu</label><input class="cf-input" type="text" placeholder="Örn: M8x30"></div>
+          </div>
+          <div class="cf-group"><label class="cf-label" data-i18n="form.message">Mesajınız</label><textarea class="cf-textarea" data-i18n-ph="form.message_ph" placeholder="Teknik gereksinimler, standartlar ve diğer detaylar..."></textarea></div>
+          <button class="cf-submit" id="cf-btn" data-i18n="form.submit">Teklif Talebi Gönder →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div id="lb-close" onclick="closeLightbox()" data-i18n="lb.close">✕ KAPAT</div>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+  <div id="lb-nav">
+    <button class="lb-btn" onclick="lbStep(-1)" data-i18n="lb.prev">← ÖNCEKİ</button>
+    <button class="lb-btn" onclick="lbStep(1)" data-i18n="lb.next">SONRAKİ →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-txt">MARS<em>.</em>KAPLAMA</div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Endüstriyel yüzey kaplama alanında 20 yıllık deneyim ve uluslararası kalite standartları.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer.about">Hakkımızda</div>
+      <div class="footer-links">
+        <a onclick="showPage('about')" data-i18n="nav.whoweare">Biz Kimiz?</a>
+        <a onclick="showPage('quality')" data-i18n="nav.quality">Kalite</a>
+        <a onclick="showPage('sustainability')" data-i18n="nav.sustain">Sürdürülebilirlik</a>
+        <a onclick="showPage('career')" data-i18n="nav.career">Kariyer</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="nav.services">Hizmetlerimiz</div>
+      <div class="footer-links">
+        <a onclick="showPage('services')" data-i18n="nav.coatingtypes">Kaplama Türleri</a>
+        <a onclick="showPage('gallery')" data-i18n="nav.gallery">Galeri</a>
+        <a onclick="showPage('contact')" data-i18n="nav.cta">Teklif Al</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="nav.contact">İletişim</div>
+      <div class="footer-links">
+        <a>Manisa OSB, 45030</a>
+        <a href="tel:+902360000000">+90 236 000 00 00</a>
+        <a href="mailto:info@marskaplama.com.tr">info@marskaplama.com.tr</a>
+      </div>
+      <div style="margin-top:1.4rem">
+        <div class="footer-col-title" data-i18n="footer.newsletter">Bülten</div>
+        <div class="footer-newsletter"><input class="nl-input" type="email" data-i18n-ph="footer.nl_ph" placeholder="E-posta adresiniz"><button class="nl-btn" data-i18n="footer.subscribe">Abone Ol</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" data-i18n="footer.copy">© 2025 Mars Kaplama San. ve Tic. Ltd. Şti. — Tüm hakları saklıdır.</div>
+    <div class="footer-legal"><a data-i18n="footer.cookie">Çerez Politikası</a><a data-i18n="footer.terms">Kullanım Koşulları</a><a data-i18n="footer.kvkk">KVKK</a></div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════
+const T = {
+tr: {
+  "nav.about":"Hakkımızda","nav.whoweare":"Biz Kimiz?","nav.quality":"Kalite","nav.sustain":"Sürdürülebilirlik",
+  "nav.services":"Hizmetlerimiz","nav.coatingtypes":"Kaplama Türleri","nav.techspecs":"Teknik Özellikler",
+  "nav.sectors":"Sektörler","nav.gallery":"Galeri","nav.career":"Kariyer","nav.contact":"İletişim","nav.cta":"Teklif Al",
+  "home.eyebrow":"Endüstriyel Yüzey Kaplama","home.h1":"GÜÇLÜ<br><span>KAPLAMA.</span><br>ÜSTÜN KALİTE.",
+  "home.desc":"Mars Kaplama; cıvata, somun ve bağlantı elemanları için uluslararası standartlarda yüzey kaplama hizmeti sunar. 20 yıllık deneyim, ISO sertifikalı süreçler ve endüstriyel güvenilirlik.",
+  "home.btn_services":"Hizmetlerimiz →","home.btn_quote":"Teklif İste","home.services_eyebrow":"Uzmanlık Alanlarımız",
+  "home.services_title":"KAPLAMA HİZMETLERİ","home.services_sub":"Otomotiv'den inşaata, beyaz eşyadan havacılığa — her sektörün ihtiyacına özel kaplama çözümleri.",
+  "home.all_services":"Tüm Kaplama Çeşitlerimiz →","home.about_eyebrow":"Hakkımızda","home.about_title":"20 YILLIK TECRÜBE",
+  "home.about_p1":"Mars Kaplama, 2004 yılında Manisa'da kurulmuş; bugün yüzlerce ulusal ve uluslararası müşteriye hizmet veren köklü bir yüzey kaplama firmasıdır.",
+  "home.about_p2":"Tam otomatik kaplama hatları, modern laboratuvar altyapısı ve 180'i aşkın uzman kadrosuyla yılda 50 milyonu aşkın parça kaplama kapasitesine sahibiz.",
+  "home.learn_more":"Bizi Daha İyi Tanıyın →",
+  "stat.experience":"Yıllık Deneyim","stat.clients":"Aktif Müşteri","stat.parts":"Kaplanan Parça / Yıl","stat.types":"Kaplama Çeşidi","stat.delivery":"Maks. Teslimat Süresi",
+  "spec.founded":"Kuruluş Yılı","spec.area":"Üretim Alanı","spec.employees":"Çalışan Sayısı","spec.capacity":"Yıllık Kapasite","spec.sectors":"Hizmet Sektörü",
+  "svc.zinc":"Elektrolitik Çinko Kaplama","svc.zinc_d":"Mükemmel korozyon direnci, ekonomik maliyet ve geniş uygulama aralığı.","svc.zinc_full":"En yaygın kullanılan kaplama türü. Parlak, yarı parlak veya mat seçenekleri. Kromat veya passivation ile desteklenebilir.",
+  "svc.lamel":"Çinko Lamel Kaplama","svc.lamel_d":"Krom içermeyen Geomet® teknolojisiyle otomotiv ana sanayi kalitesi.",
+  "svc.phosphate":"Fosfat Kaplama","svc.phosphate_d":"Mangan, çinko ve demir fosfat çeşitleriyle yüzey hazırlığı ve korozyon koruması.","svc.phosphate_full":"Boya altı primer ve korozyon koruması. Kaba ve ince kristal yapı seçenekleri.",
+  "svc.znni":"Elektrolitik Çinko-Nikel","svc.znni_d":"12-15% nikel ile üstün korozyon ve ısı direnci.","svc.znni_full":"Otomotiv egzoz ve fren bileşenlerinde tercih edilen yüksek performanslı kaplama.",
+  "svc.paint":"Toz & Yaş Boya","svc.paint_d":"Geniş RAL renk skalasıyla estetik ve koruyucu çözüm.","svc.paint_full":"Elektrostatik toz boya ve ıslak boya sistemleri. RAL renk skalası.",
+  "svc.special":"Özel & Katma Değerli","svc.special_d":"Hidrojen gevrekliği giderme, teknik temizlik ve plastik patch uygulamaları.",
+  "svc.geomet":"Çinko Lamel Kaplama (Geomet®)","svc.geomet_full":"Krom içermeyen çevre dostu teknoloji. Yüksek korozyon direnci ve ısı stabilitesi.",
+  "svc.topcoat":"Üstlak (Topcoat) Uygulamaları","svc.topcoat_full":"Torque-tension özellikleri, yağlayıcı ve sürtünme katsayısı düzenleyici çözümler.",
+  "svc.micro":"Mikrokapsüllü Kilitli Boya","svc.micro_full":"Montaj sonrası sökülmeyi engelleyen mikrokapsüllü yapıştırıcı kaplama.",
+  "svc.patch":"Plastik Patch","svc.patch_full":"Polimer patch ile self-locking özellik. Otomotiv ve elektronik için.",
+  "svc.hydrogen":"Hidrojen Gevrekliği Giderme","svc.hydrogen_full":"Kaplama sonrası hidrojen gevrekliğini gidermek için ısıl işlem uygulaması.",
+  "svc.clean":"Teknik Temizlik","svc.clean_full":"Partikül kirliliğinin ölçülmesi ve otomotiv cleanliness standartlarına uyum.",
+  "svc.mask":"Diş Maskeleme","svc.mask_full":"Vida dişlerinin kaplama sırasında korunması. Yüksek hassasiyet.",
+  "svc.custom":"Özel Geliştirme","svc.custom_full":"Ar-Ge ekibimizle müşteri özel proses geliştirme ve pilot uygulama.",
+  "process.eyebrow":"Nasıl Çalışırız","process.title":"ÜRETİM SÜRECİ","process.sub":"Talebi aldığımız andan teslimat anına kadar her adım kalite güvencesiyle yönetilir.",
+  "proc.s1":"Talep & Analiz","proc.s1d":"Teknik gereksinimler ve standartlar belirlenir.","proc.s2":"Yüzey Hazırlık","proc.s2d":"Yağ alma ve aktivasyon ile optimum adhesyon.",
+  "proc.s3":"Kaplama","proc.s3d":"Kontrollü parametrelerle kaplama uygulanır.","proc.s4":"Kalite Kontrol","proc.s4d":"XRF ve tuz spreyi testi ile onay.","proc.s5":"Paket & Teslimat","proc.s5d":"Güvenli ambalaj ve zamanında teslimat.",
+  "sectors.eyebrow":"Hizmet Alanlarımız","sectors.title":"SEKTÖRLER",
+  "sector.auto":"Otomotiv","sector.construction":"İnşaat","sector.machinery":"Makine İmalat","sector.electrical":"Elektrik & Elektronik","sector.aviation":"Havacılık","sector.appliance":"Beyaz Eşya","sector.marine":"Denizcilik","sector.energy":"Enerji & Altyapı",
+  "gallery.eyebrow":"Referans Görseller","gallery.title":"KAPLAMA GALERİSİ","gallery.see_all":"Tüm Galeriyi Gör →",
+  "gallery.page_title":"KAPLAMA GALERİSİ","gallery.page_eyebrow":"Kaplama Süreci","gallery.page_sub":"Farklı kaplama türlerinin görsel referansları — yüzey kalitesi, renk ve doku örnekleri.",
+  "stage.0":"Yağlı Cıvata","stage.1":"Yağ Giderme","stage.2":"Asitleme","stage.3":"Kumlama","stage.4":"Kaplama","stage.5":"Bitmiş Ürün",
+  "stage.desc.0":"Ham cıvata yüzeyinde üretim kalıntısı yağ ve pas tabakası bulunur. Bu kirlilikler kaplamanın tutunmasını engeller.",
+  "stage.desc.1":"Alkalin yağ giderme banyosunda cıvata 60–80°C'de yıkanır. Tüm organik kirlilikler ve yağ kalıntıları uzaklaştırılır.",
+  "stage.desc.2":"Seyreltik asit banyosunda oksit tabakası ve yüzey pası çözündürülür. Metal yüzey kaplama için aktif hale getirilir.",
+  "stage.desc.3":"Basınçlı abrasif tanecikleriyle yüzey pürüzlendirilir. Mikro düzeyde tüm kirlilikler ve çapaklar giderilir.",
+  "stage.desc.4":"Elektrolitik banyoda çinko iyonları metal yüzeye biriktirilir. Kontrollü parametrelerle 8–12 μm kaplama kalınlığı elde edilir.",
+  "stage.desc.5":"Kaplama tamamlandı. Yüzey tuz spreyine karşı 480 saat direnç gösterir. Kromat işlemi ile korozyon koruması artırıldı.",
+  "filter.all":"Tümü","filter.zinc":"Çinko Kaplama","filter.phosphate":"Fosfat","filter.geomet":"Geomet® / Lamel","filter.nickel":"Nikel & Özel","filter.paint":"Boya","filter.fastener":"Bağlantı Elemanları",
+  "marquee.zinc":"Elektrolitik Çinko Kaplama","marquee.phosphate":"Fosfat Kaplama","marquee.nickel":"Nikel Kaplama","marquee.geomet":"Geomet® Kaplama","marquee.lamel":"Çinko Lamel Kaplama","marquee.passivation":"Passivation","marquee.paint":"Toz Boya","marquee.hydrogen":"Hidrojen Gevrekliği Giderme",
+  "breadcrumb.about":"Ana Sayfa / <em>Hakkımızda</em>","breadcrumb.services":"Ana Sayfa / <em>Hizmetlerimiz</em>","breadcrumb.gallery":"Ana Sayfa / <em>Galeri</em>","breadcrumb.quality":"Ana Sayfa / <em>Kalite</em>","breadcrumb.sustain":"Ana Sayfa / <em>Sürdürülebilirlik</em>","breadcrumb.career":"Ana Sayfa / <em>Kariyer</em>","breadcrumb.contact":"Ana Sayfa / <em>İletişim</em>",
+  "about.title":"BİZ KİMİZ?","about.sub":"20 yıllık köklü geçmiş ve uzman ekiple sektörün önde gelen kaplama firması.","about.history_ey":"Tarihçemiz","about.history_title":"MARS KAPLAMA HAKKINDA","about.p1":"Mars Kaplama San. ve Tic. Ltd. Şti., 2004 yılında Manisa OSB'de kurulmuştur.","about.p2":"12.000 m² üretim alanımızda tam otomatik hatlar ve 180+ uzman kadroyla 50M+ parça/yıl kapasitesine sahibiz.","about.p3":"Otomotiv, inşaat, beyaz eşya, elektronik, mobilya ve havacılık sektörlerine hizmet veriyoruz.","about.facility":"TESİS FOTOĞRAFI","about.team_ey":"Yönetim","about.team_title":"YÖNETİM KURULU",
+  "tl.2004":"Manisa OSB'de kuruluş. İlk elektrolitik çinko kaplama hattı devreye alındı.","tl.2008":"Üretim alanı 2 katına çıkarıldı. ISO 9001 belgesi alındı.","tl.2013":"Geomet® lisanslı çinko lamel kaplama hattı kuruldu. Otomotiv sektörüne giriş.","tl.2018":"ISO 14001 sertifikası. Tam otomasyon yatırımları tamamlandı.","tl.2024":"20. yıl. 500+ müşteri ve 50M+ parça/yıl kapasitesiyle sektör lideri.",
+  "team.ceo":"Genel Müdür & Kurucu","team.prod":"Üretim Müdürü","team.qa":"Kalite Güvence Müdürü","team.rnd":"Ar-Ge & Mühendislik Müdürü","team.sales":"Satış & Pazarlama Müdürü","team.log":"Lojistik & Tedarik Müdürü",
+  "services.title":"KAPLAMA HİZMETLERİ","services.sub":"11 farklı kaplama türü ile her sektöre uygun yüzey işlem çözümleri.","services.list_ey":"Kaplama Çeşitlerimiz","services.list_title":"KAPLAMA TÜRLERİ","services.table_ey":"Teknik Veriler","services.table_title":"KOMPARATİF TABLO","services.table_sub":"Kaplama Türleri – Teknik Karşılaştırma",
+  "table.type":"Kaplama Türü","table.thick":"Kalınlık (μm)","table.salt":"Tuz Spreyi (h)","table.temp":"Sıcaklık Direnci","table.sector":"Tipik Sektör",
+  "tbl.zinc_blue":"El. Çinko (Mavi Kromat)","tbl.zinc_yellow":"El. Çinko (Sarı Kromat)","tbl.znni":"El. Çinko-Nikel","tbl.auto_air":"Otomotiv, Havacılık","tbl.oem":"Otomotiv OEM","tbl.general":"Genel Endüstri","tbl.machine":"Makine, İnşaat","tbl.phosphate":"Çinko Fosfat","tbl.primer":"Boya Altı","tbl.powder":"Toz Boya","tbl.furniture":"Mobilya, İnşaat",
+  "quality.title":"KALİTE & SERTİFİKASYON","quality.sub":"Uluslararası standartlara tam uyum ve sürekli iyileştirme taahhüdü.","quality.cert_ey":"Sertifikalarımız","quality.cert_title":"ULUSLARARASI SERTİFİKALAR","quality.test_ey":"Test Altyapımız","quality.test_title":"KALİTE KONTROL TESTLERİ",
+  "cert.9001":"Kalite Yönetim Sistemi. Tüm üretim süreçlerimiz belgelenmiş ve denetlenmektedir.","cert.14001":"Çevre Yönetim Sistemi. Sürdürülebilir üretim hedefiyle yönetiyoruz.","cert.iatf":"Otomotiv Kalite Yönetim Sistemi. Otomotiv OEM tedarikçisi standardı.","cert.rohs":"AB direktiflerine tam uyumlu, zararlı madde içermeyen çözümler.","cert.din":"Bağlantı elemanları için elektrolitik çinko standartları.","cert.astm":"Elektrolitik çinko kaplama ve hidrojen gevrekliği test standartları.",
+  "test.salt":"Tuz Spreyi Testi","test.salt_u":"saat kapasiteli","test.salt_d":"ISO 9227 standardına göre korozyon direnci doğrulaması.","test.xrf":"XRF Kalınlık Ölçümü","test.xrf_d":"Tahribatsız kalınlık ve alaşım analizi.","test.h2":"Hidrojen Gevrekliği Testi","test.h2_d":"Yüksek mukavemetli parçalar için sustained load testi.","test.torque":"Torque-Tension","test.torque_d":"VDA 235-204 uyumlu sürtünme katsayısı ölçümü.","test.clean":"Teknik Temizlik","test.clean_d":"Partikül kirliliği analizi ve raporlaması.","test.visual":"Görsel Muayene","test.visual_u":"optik kontrol","test.visual_d":"Yüzey kusurları ve tolerans kontrolü.",
+  "sustain.title":"SÜRDÜRÜLEBİLİRLİK","sustain.sub":"Geleceğe yönelik sorumlu üretim.","sustain.ey":"Yaklaşımımız","sustain.env_title":"ÇEVRE POLİTİKAMIZ","sustain.env_p":"Mars Kaplama olarak çevre yönetimini üretimin ayrılmaz parçası görüyoruz.",
+  "pillar.env":"Çevre Koruma","pillar.env_d":"Atıksu arıtma ve kimyasal geri kazanım ile çevresel etkimizi minimize ediyoruz.","pillar.people":"Çalışan Refahı","pillar.people_d":"İş sağlığı ve güvenliği önceliğimizdir.","pillar.energy":"Enerji Verimliliği","pillar.energy_d":"Enerji izleme ile tüketimi yıllık olarak azaltıyoruz.","pillar.safety":"Ürün Güvenliği","pillar.safety_d":"RoHS ve REACH direktiflerine tam uyum.","pillar.supply":"Tedarik Sorumluluğu","pillar.supply_d":"Etik ve çevre dostu kaynakları tercih ediyoruz.","pillar.community":"Toplumsal Katkı","pillar.community_d":"Yerel eğitim ve staj programlarıyla topluma değer katıyoruz.",
+  "env.water":"Su Tüketimi (5 yılda)","env.energy":"Enerji Tüketimi (5 yılda)","env.chem":"Kimyasal Geri Kazanım","env.zero":"Sıfır","env.acc":"İSG Kazası (Son 3 Yıl)",
+  "career.title":"KARİYER","career.sub":"Büyüyen ekibimizin parçası olun.","career.benefits_ey":"Neden Mars Kaplama?","career.benefits_title":"ÇALIŞAN AVANTAJLARI","career.jobs_ey":"Açık Pozisyonlar","career.jobs_title":"İŞ İLANLARIMIZ","career.open_ey":"Açık İlan Yoksa","career.open_p":"Uygun pozisyon yoksa özgeçmişinizi gönderin.","career.send_cv":"Özgeçmiş Gönder →",
+  "benefit.salary":"Rekabetçi Maaş","benefit.salary_d":"Piyasa üstü ücret ve performans değerlendirmesi.","benefit.career":"Kariyer Gelişimi","benefit.career_d":"Eğitim bütçesi ve sertifikasyon desteği.","benefit.health":"Sağlık Sigortası","benefit.health_d":"Özel sağlık sigortası ve aile kapsamı.","benefit.flex":"Esnek Çalışma","benefit.flex_d":"Hibrit ve esnek çalışma imkânı.","benefit.social":"Sosyal Haklar","benefit.social_d":"Yemek, servis ve yakacak yardımı.","benefit.team":"Takım Ruhu","benefit.team_d":"Takım etkinlikleri ve şirket gezileri.",
+  "job.1":"Kaplama Proses Mühendisi","job.2":"Kalite Kontrol Uzmanı","job.3":"Teknik Satış Mühendisi","job.4":"Lojistik Koordinatörü","job.5":"Üretim Operatörü","job.active":"Aktif İlan","job.passive":"Pasif","job.full":"Tam Zamanlı","job.shift":"Vardiya","job.turkey":"Türkiye Geneli",
+  "dept.prod":"Üretim / Ar-Ge","dept.qa":"Kalite Güvence","dept.sales":"Satış & Pazarlama","dept.log":"Lojistik","dept.prod2":"Üretim",
+  "contact.title":"İLETİŞİM & TEKLİF","contact.sub":"Teknik sorularınız ve teklif talepleriniz için ekibimizle iletişime geçin.","contact.info_ey":"İletişim Bilgileri","contact.reach":"BİZE ULAŞIN","contact.reach_d":"Teknik ekibimiz kaplama seçimi ve teklif konularında destek vermek için hazır.","contact.addr_l":"Adres","contact.phone_l":"Telefon","contact.email_l":"E-Posta","contact.hours_l":"Çalışma Saatleri","contact.hours_v":"Pzt–Cum: 08:00–18:00 | Cmt: 08:00–13:00","contact.map":"HARİTA","contact.form_ey":"Teklif Talebi",
+  "form.name":"Ad Soyad *","form.name_ph":"Ad Soyad","form.company":"Firma *","form.company_ph":"Firma Adı","form.phone":"Telefon *","form.email":"E-Posta *","form.coating":"Kaplama Türü *","form.coating_ph":"Kaplama türü seçin","form.qty":"Tahmini Miktar","form.qty_ph":"Örn: 50.000 adet/ay","form.size":"Parça Boyutu","form.message":"Mesajınız","form.message_ph":"Teknik gereksinimler, standartlar ve detaylar...","form.submit":"Teklif Talebi Gönder →","form.sent":"✓ Talebiniz Alındı",
+  "footer.tagline":"Endüstriyel yüzey kaplama alanında 20 yıllık deneyim ve uluslararası kalite standartları.","footer.about":"Hakkımızda","footer.newsletter":"Bülten","footer.nl_ph":"E-posta adresiniz","footer.subscribe":"Abone Ol","footer.copy":"© 2025 Mars Kaplama San. ve Tic. Ltd. Şti. — Tüm hakları saklıdır.","footer.cookie":"Çerez Politikası","footer.terms":"Kullanım Koşulları","footer.kvkk":"KVKK",
+  "lb.close":"✕ KAPAT","lb.prev":"← ÖNCEKİ","lb.next":"SONRAKİ →"
+},
+en:{},
+de:{}
+};
+
+// English translations
+T.en = {
+  ...T.tr,
+  "nav.about":"About","nav.whoweare":"Who We Are","nav.quality":"Quality","nav.sustain":"Sustainability",
+  "nav.services":"Services","nav.coatingtypes":"Coating Types","nav.techspecs":"Technical Specs","nav.sectors":"Sectors",
+  "nav.gallery":"Gallery","nav.career":"Career","nav.contact":"Contact","nav.cta":"Get a Quote",
+  "home.eyebrow":"Industrial Surface Coating","home.h1":"STRONG<br><span>COATING.</span><br>SUPERIOR QUALITY.",
+  "home.desc":"Mars Kaplama provides internationally certified surface coating services for bolts, nuts, and fasteners. 20 years of experience, ISO-certified processes, and industrial reliability.",
+  "home.btn_services":"Our Services →","home.btn_quote":"Request a Quote","home.services_eyebrow":"Areas of Expertise",
+  "home.services_title":"COATING SERVICES","home.services_sub":"From automotive to construction, from white goods to aerospace — custom coating solutions for every industry.",
+  "home.all_services":"All Coating Types →","home.about_eyebrow":"About Us","home.about_title":"20 YEARS OF EXPERIENCE",
+  "home.about_p1":"Mars Kaplama was founded in Manisa in 2004 and today serves hundreds of national and international clients as a leading surface coating firm.",
+  "home.about_p2":"With fully automatic coating lines, modern laboratory infrastructure, and a team of 180+ experts, we have the capacity to coat over 50 million parts per year.",
+  "home.learn_more":"Learn More About Us →",
+  "stat.experience":"Years of Experience","stat.clients":"Active Clients","stat.parts":"Parts Coated / Year","stat.types":"Coating Types","stat.delivery":"Max. Delivery Time",
+  "spec.founded":"Founded","spec.area":"Production Area","spec.employees":"Employees","spec.capacity":"Annual Capacity","spec.sectors":"Industries Served",
+  "svc.zinc":"Electrolytic Zinc Coating","svc.zinc_d":"Excellent corrosion resistance, cost-effective and wide application range.","svc.zinc_full":"Most widely used coating type. Bright, semi-bright or matte options. Can be supported with chromate or passivation.",
+  "svc.lamel":"Zinc Flake Coating","svc.lamel_d":"Chrome-free Geomet® technology meeting automotive OEM standards.",
+  "svc.phosphate":"Phosphate Coating","svc.phosphate_d":"Surface preparation and corrosion protection with manganese, zinc or iron phosphate.","svc.phosphate_full":"Sub-paint primer and corrosion protection. Available in coarse and fine crystal structures.",
+  "svc.znni":"Electrolytic Zinc-Nickel","svc.znni_d":"12–15% nickel content for superior corrosion and heat resistance.","svc.znni_full":"Preferred for automotive exhaust and brake components. High-performance coating.",
+  "svc.paint":"Powder & Wet Paint","svc.paint_d":"Wide RAL color range offering both aesthetic and protective solutions.","svc.paint_full":"Electrostatic powder and wet paint systems. Full RAL color spectrum.",
+  "svc.special":"Special & Value-Added","svc.special_d":"Hydrogen embrittlement relief, technical cleanliness, thread masking, and plastic patch.",
+  "svc.geomet":"Zinc Flake Coating (Geomet®)","svc.geomet_full":"Chrome-free eco-friendly technology. High corrosion resistance and thermal stability.",
+  "svc.topcoat":"Topcoat Applications","svc.topcoat_full":"Torque-tension properties, lubricant, and friction coefficient regulating solutions.",
+  "svc.micro":"Micro-encapsulated Locking Paint","svc.micro_full":"Adhesive micro-encapsulated coating preventing loosening after re-assembly.",
+  "svc.patch":"Plastic Patch","svc.patch_full":"Polymer patch for self-locking feature. Ideal for automotive and electronics.",
+  "svc.hydrogen":"Hydrogen Embrittlement Relief","svc.hydrogen_full":"Heat treatment after coating to relieve hydrogen embrittlement (≥200°C, 8-24h).",
+  "svc.clean":"Technical Cleanliness","svc.clean_full":"Measurement and reduction of particulate contamination to automotive cleanliness standards.",
+  "svc.mask":"Thread Masking","svc.mask_full":"Protection of thread zones during coating. For high-precision fasteners.",
+  "svc.custom":"Custom Development","svc.custom_full":"Customer-specific process development and pilot production with our R&D team.",
+  "process.eyebrow":"How We Work","process.title":"PRODUCTION PROCESS","process.sub":"Every step from inquiry to delivery is managed with documented quality assurance.",
+  "proc.s1":"Inquiry & Analysis","proc.s1d":"Technical specs and standards are defined.","proc.s2":"Surface Preparation","proc.s2d":"Degreasing and activation for optimal adhesion.","proc.s3":"Coating","proc.s3d":"Coating applied with controlled parameters.","proc.s4":"Quality Control","proc.s4d":"XRF and salt spray testing for full approval.","proc.s5":"Pack & Delivery","proc.s5d":"Safe packaging and on-time delivery.",
+  "sectors.eyebrow":"Service Areas","sectors.title":"SECTORS",
+  "sector.auto":"Automotive","sector.construction":"Construction","sector.machinery":"Machinery Manufacturing","sector.electrical":"Electrical & Electronics","sector.aviation":"Aerospace","sector.appliance":"White Goods","sector.marine":"Marine","sector.energy":"Energy & Infrastructure",
+  "gallery.eyebrow":"Reference Images","gallery.title":"COATING GALLERY","gallery.see_all":"View Full Gallery →","gallery.page_title":"COATING GALLERY","gallery.page_eyebrow":"Coating Process","gallery.page_sub":"Visual references for different coating types — surface quality, color and texture examples.",
+  "stage.0":"Oily Bolt","stage.1":"Degreasing","stage.2":"Acid Pickling","stage.3":"Shot Blasting","stage.4":"Coating","stage.5":"Finished Product",
+  "stage.desc.0":"The raw bolt surface contains manufacturing oil residue and rust layers. These contaminants prevent the coating from adhering properly.",
+  "stage.desc.1":"The bolt is washed in an alkaline degreasing bath at 60–80°C. All organic contaminants and oil residues are completely removed.",
+  "stage.desc.2":"The oxide layer and surface rust are dissolved in a dilute acid bath. The metal surface is activated and prepared for coating.",
+  "stage.desc.3":"The surface is roughened with pressurized abrasive particles. All micro-level contamination and burrs are removed for optimal adhesion.",
+  "stage.desc.4":"Zinc ions are deposited onto the metal surface in an electrolytic bath. A controlled 8–12 μm coating thickness is achieved.",
+  "stage.desc.5":"Coating complete. The surface offers 480 hours of salt spray resistance. Chromate post-treatment further enhances corrosion protection.",
+  "filter.all":"All","filter.zinc":"Zinc Coating","filter.phosphate":"Phosphate","filter.geomet":"Geomet® / Flake","filter.nickel":"Nickel & Special","filter.paint":"Paint","filter.fastener":"Fasteners",
+  "marquee.zinc":"Electrolytic Zinc Coating","marquee.phosphate":"Phosphate Coating","marquee.nickel":"Nickel Coating","marquee.geomet":"Geomet® Coating","marquee.lamel":"Zinc Flake Coating","marquee.passivation":"Passivation","marquee.paint":"Powder Coating","marquee.hydrogen":"Hydrogen Embrittlement Relief",
+  "breadcrumb.about":"Home / <em>About Us</em>","breadcrumb.services":"Home / <em>Services</em>","breadcrumb.gallery":"Home / <em>Gallery</em>","breadcrumb.quality":"Home / <em>Quality</em>","breadcrumb.sustain":"Home / <em>Sustainability</em>","breadcrumb.career":"Home / <em>Career</em>","breadcrumb.contact":"Home / <em>Contact</em>",
+  "about.title":"WHO WE ARE","about.sub":"A leading surface coating company with 20 years of history, strong infrastructure and expert team.","about.history_ey":"Our History","about.history_title":"ABOUT MARS KAPLAMA","about.p1":"Mars Kaplama Ltd. was founded in 2004 in Manisa Organized Industrial Zone.","about.p2":"With 12,000 m² of production space, automated coating lines and 180+ specialists, we coat over 50M parts per year.","about.p3":"We serve automotive, construction, appliances, electronics, furniture, energy, and aerospace sectors.","about.facility":"FACILITY PHOTO","about.team_ey":"Management","about.team_title":"MANAGEMENT BOARD",
+  "tl.2004":"Founded in Manisa OIZ. First electrolytic zinc coating line commissioned.","tl.2008":"Production area doubled. Phosphate and nickel lines added. ISO 9001 certified.","tl.2013":"Geomet® licensed zinc flake line installed. Entry into automotive sector.","tl.2018":"ISO 14001 certification. Full automation investments completed.","tl.2024":"20th year. 500+ clients, 50M+ parts/year capacity.",
+  "team.ceo":"CEO & Founder","team.prod":"Production Manager","team.qa":"Quality Assurance Manager","team.rnd":"R&D & Engineering Manager","team.sales":"Sales & Marketing Manager","team.log":"Logistics & Supply Manager",
+  "services.title":"COATING SERVICES","services.sub":"11 coating types for every industry and technical requirement.","services.list_ey":"Our Coating Types","services.list_title":"COATING TYPES","services.table_ey":"Technical Data","services.table_title":"COMPARATIVE TABLE","services.table_sub":"Coating Types – Technical Comparison",
+  "table.type":"Coating Type","table.thick":"Thickness (μm)","table.salt":"Salt Spray (h)","table.temp":"Temp. Resistance","table.sector":"Typical Sector",
+  "tbl.zinc_blue":"El. Zinc (Blue Chromate)","tbl.zinc_yellow":"El. Zinc (Yellow Chromate)","tbl.znni":"El. Zinc-Nickel","tbl.auto_air":"Automotive, Aerospace","tbl.oem":"Automotive OEM","tbl.general":"General Industry","tbl.machine":"Machinery, Construction","tbl.phosphate":"Zinc Phosphate","tbl.primer":"Sub-Paint Primer","tbl.powder":"Powder Coating","tbl.furniture":"Furniture, Construction",
+  "quality.title":"QUALITY & CERTIFICATION","quality.sub":"Full compliance with international standards and continuous improvement commitment.","quality.cert_ey":"Certifications","quality.cert_title":"INTERNATIONAL CERTIFICATIONS","quality.test_ey":"Testing Infrastructure","quality.test_title":"QUALITY CONTROL TESTS",
+  "cert.9001":"Quality Management System. All production processes are documented and audited.","cert.14001":"Environmental Management System. Every production decision considers environmental impact.","cert.iatf":"Automotive Quality Management System. Meeting the most critical automotive OEM standard.","cert.rohs":"Full compliance with EU directives. Hazardous substance-free coating solutions.","cert.din":"Standard for electrolytic zinc and zinc alloy coatings on fasteners.","cert.astm":"Electrolytic zinc coating and hydrogen embrittlement testing standards.",
+  "test.salt":"Salt Spray Test","test.salt_u":"hour capacity","test.salt_d":"Corrosion resistance verification per ISO 9227.","test.xrf":"XRF Thickness Measurement","test.xrf_d":"Non-destructive thickness and alloy analysis by X-Ray fluorescence.","test.h2":"Hydrogen Embrittlement Test","test.h2_d":"Sustained load test for high-strength parts.","test.torque":"Torque-Tension","test.torque_d":"Friction coefficient measurement per VDA 235-204.","test.clean":"Technical Cleanliness","test.clean_d":"Particle contamination analysis and reporting.","test.visual":"Visual Inspection","test.visual_u":"optical control","test.visual_d":"Surface defect and dimensional tolerance inspection.",
+  "sustain.title":"SUSTAINABILITY","sustain.sub":"Responsible production for the future. Balanced approach for environment, society and economy.","sustain.ey":"Our Approach","sustain.env_title":"ENVIRONMENTAL POLICY","sustain.env_p":"At Mars Kaplama, we see environmental management as an integral part of our production processes.",
+  "pillar.env":"Environmental Protection","pillar.env_d":"We minimize our environmental footprint with wastewater treatment and closed-loop chemical recovery.","pillar.people":"Employee Wellbeing","pillar.people_d":"Health and safety is our priority. Regular training and medical check-ups ensure safe workplaces.","pillar.energy":"Energy Efficiency","pillar.energy_d":"Energy monitoring systems help us reduce consumption year over year.","pillar.safety":"Product Safety","pillar.safety_d":"Full compliance with RoHS and REACH directives. Chrome-VI and restricted substance-free.","pillar.supply":"Supply Chain Responsibility","pillar.supply_d":"We evaluate suppliers on sustainability criteria and prefer ethical sources.","pillar.community":"Community Contribution","pillar.community_d":"We partner with local educational institutions and offer internship programs.",
+  "env.water":"Water Consumption (5 years)","env.energy":"Energy Consumption (5 years)","env.chem":"Chemical Recovery Rate","env.zero":"Zero","env.acc":"OHS Accidents (Last 3 Years)",
+  "career.title":"CAREER","career.sub":"Join our growing team. Open positions and benefits of working at Mars Kaplama.","career.benefits_ey":"Why Mars Kaplama?","career.benefits_title":"EMPLOYEE BENEFITS","career.jobs_ey":"Open Positions","career.jobs_title":"JOB LISTINGS","career.open_ey":"No Open Position?","career.open_p":"If you don't see a suitable position, send us your CV. We always welcome motivated candidates.","career.send_cv":"Send Your CV →",
+  "benefit.salary":"Competitive Salary","benefit.salary_d":"Above-market compensation with annual performance reviews.","benefit.career":"Career Development","benefit.career_d":"Training budget, certification support and internal promotion priority.","benefit.health":"Health Insurance","benefit.health_d":"Private health insurance with family coverage.","benefit.flex":"Flexible Work","benefit.flex_d":"Hybrid and flexible working hours for eligible positions.","benefit.social":"Social Benefits","benefit.social_d":"Meal, transport, heating allowance and special occasion gifts.","benefit.team":"Team Spirit","benefit.team_d":"Team events, company trips and a strong team culture.",
+  "job.1":"Coating Process Engineer","job.2":"Quality Control Specialist","job.3":"Technical Sales Engineer","job.4":"Logistics Coordinator","job.5":"Production Operator","job.active":"Active","job.passive":"Closed","job.full":"Full-Time","job.shift":"Shift","job.turkey":"All Turkey",
+  "dept.prod":"Production / R&D","dept.qa":"Quality Assurance","dept.sales":"Sales & Marketing","dept.log":"Logistics","dept.prod2":"Production",
+  "contact.title":"CONTACT & QUOTE","contact.sub":"Get in touch for technical inquiries, quote requests, or sample coating orders.","contact.info_ey":"Contact Information","contact.reach":"REACH US","contact.reach_d":"Our technical team is ready to support with coating selection and quotation.","contact.addr_l":"Address","contact.phone_l":"Phone","contact.email_l":"Email","contact.hours_l":"Working Hours","contact.hours_v":"Mon–Fri: 08:00–18:00 | Sat: 08:00–13:00","contact.map":"MAP","contact.form_ey":"Quote Request",
+  "form.name":"Full Name *","form.name_ph":"Full Name","form.company":"Company *","form.company_ph":"Company Name","form.phone":"Phone *","form.email":"Email *","form.coating":"Coating Type *","form.coating_ph":"Select coating type","form.qty":"Estimated Quantity","form.qty_ph":"e.g. 50,000 pcs/month","form.size":"Part Size","form.message":"Your Message","form.message_ph":"Technical requirements, standards, and other details...","form.submit":"Send Quote Request →","form.sent":"✓ Request Received",
+  "footer.tagline":"20 years of experience in industrial surface coating with international quality standards.","footer.about":"About","footer.newsletter":"Newsletter","footer.nl_ph":"Your email address","footer.subscribe":"Subscribe","footer.copy":"© 2025 Mars Kaplama Ltd. — All rights reserved.","footer.cookie":"Cookie Policy","footer.terms":"Terms of Use","footer.kvkk":"Privacy Policy",
+  "lb.close":"✕ CLOSE","lb.prev":"← PREV","lb.next":"NEXT →"
+};
+
+// German
+T.de = {
+  ...T.en,
+  "nav.about":"Über uns","nav.whoweare":"Wer wir sind","nav.quality":"Qualität","nav.sustain":"Nachhaltigkeit",
+  "nav.services":"Dienstleistungen","nav.coatingtypes":"Beschichtungsarten","nav.techspecs":"Technische Daten","nav.sectors":"Branchen",
+  "nav.gallery":"Galerie","nav.career":"Karriere","nav.contact":"Kontakt","nav.cta":"Angebot anfordern",
+  "home.eyebrow":"Industrielle Oberflächenbeschichtung","home.h1":"STARKE<br><span>BESCHICHTUNG.</span><br>HÖCHSTE QUALITÄT.",
+  "home.desc":"Mars Kaplama bietet international zertifizierte Oberflächenbeschichtungen für Schrauben, Muttern und Verbindungselemente. 20 Jahre Erfahrung, ISO-zertifizierte Prozesse und industrielle Zuverlässigkeit.",
+  "home.btn_services":"Unsere Leistungen →","home.btn_quote":"Angebot anfordern","home.services_eyebrow":"Fachbereiche",
+  "home.services_title":"BESCHICHTUNGSLEISTUNGEN","home.services_sub":"Von Automotive bis Bauwesen, von Haushaltsgeräten bis Luft- und Raumfahrt — maßgeschneiderte Beschichtungslösungen.",
+  "home.all_services":"Alle Beschichtungsarten →","home.about_eyebrow":"Über uns","home.about_title":"20 JAHRE ERFAHRUNG",
+  "home.about_p1":"Mars Kaplama wurde 2004 in Manisa gegründet und ist heute ein führendes Oberflächenbeschichtungsunternehmen mit hunderten nationalen und internationalen Kunden.",
+  "home.about_p2":"Mit vollautomatischen Beschichtungslinien, modernem Laborequipment und über 180 Experten beschichten wir mehr als 50 Millionen Teile pro Jahr.",
+  "home.learn_more":"Mehr über uns →",
+  "stat.experience":"Jahre Erfahrung","stat.clients":"Aktive Kunden","stat.parts":"Beschichtete Teile / Jahr","stat.types":"Beschichtungsarten","stat.delivery":"Max. Lieferzeit",
+  "spec.founded":"Gegründet","spec.area":"Produktionsfläche","spec.employees":"Mitarbeiter","spec.capacity":"Jahreskapazität","spec.sectors":"Bediente Branchen",
+  "svc.zinc":"Elektrolytische Zinkbeschichtung","svc.zinc_d":"Ausgezeichneter Korrosionsschutz, wirtschaftlich und vielseitig einsetzbar.","svc.zinc_full":"Häufigste Beschichtungsart. Glänzend, halbglänzend oder matt. Mit Chromatierung oder Passivierung.",
+  "svc.lamel":"Zinklamellebeschichtung","svc.lamel_d":"Chromfreie Geomet®-Technologie nach Automotive-OEM-Standard.",
+  "svc.phosphate":"Phosphatbeschichtung","svc.phosphate_d":"Oberflächenvorbereitung und Korrosionsschutz mit Mangan-, Zink- oder Eisenphosphat.","svc.phosphate_full":"Grundierungsunterlage und Korrosionsschutz. Grob- und Feinkristallstruktur verfügbar.",
+  "svc.znni":"Elektrolytische Zink-Nickel-Beschichtung","svc.znni_d":"12–15% Nickelgehalt für überlegenen Korrosions- und Wärmeschutz.","svc.znni_full":"Bevorzugt für Automotive-Abgas- und Bremssysteme.",
+  "svc.paint":"Pulver- & Nasslackierung","svc.paint_d":"Großes RAL-Farbspektrum für ästhetischen und schützenden Einsatz.","svc.paint_full":"Elektrostatische Pulver- und Nasslacksysteme. Volles RAL-Farbspektrum.",
+  "svc.special":"Sonder- & Mehrwertleistungen","svc.special_d":"Wasserstoffentsprödung, Technische Sauberkeit, Gewinde-Masking und Kunststoff-Patch.",
+  "svc.geomet":"Zinklamellenbeschichtung (Geomet®)","svc.geomet_full":"Chromfreie Technologie. Hohe Korrosionsbeständigkeit und Thermostabilität.",
+  "svc.topcoat":"Topcoat-Anwendungen","svc.topcoat_full":"Drehmomenten-Reibungszahl-Regulierung und Schmierstofflösungen.",
+  "svc.micro":"Mikrokapsulierter Sicherungslack","svc.micro_full":"Adhäsiver Sicherungslack verhindert Losdrehen nach Wiedermontage.",
+  "svc.patch":"Kunststoff-Patch","svc.patch_full":"Polymer-Patch für Selbstsicherungsfunktion. Ideal für Automotive und Elektronik.",
+  "svc.hydrogen":"Wasserstoffentsprödung","svc.hydrogen_full":"Wärmebehandlung nach Beschichtung zur Entsprödung (≥200°C, 8-24h).",
+  "svc.clean":"Technische Sauberkeit","svc.clean_full":"Partikelverschmutzung messen und auf Automotive-Sauberkeitsnormen reduzieren.",
+  "svc.mask":"Gewindemasking","svc.mask_full":"Schutz der Gewindezonen während der Beschichtung. Für hochpräzise Verbindungselemente.",
+  "svc.custom":"Sonderentwicklung","svc.custom_full":"Kundenspezifische Prozessentwicklung und Pilotproduktion mit unserem F&E-Team.",
+  "process.eyebrow":"So arbeiten wir","process.title":"PRODUKTIONSPROZESS","process.sub":"Jeder Schritt von der Anfrage bis zur Lieferung wird mit dokumentierter Qualitätssicherung gemanagt.",
+  "proc.s1":"Anfrage & Analyse","proc.s1d":"Technische Anforderungen werden definiert.","proc.s2":"Oberflächenvorbereitung","proc.s2d":"Entfettung und Aktivierung für optimale Haftung.","proc.s3":"Beschichtung","proc.s3d":"Auftrag mit kontrollierten Parametern.","proc.s4":"Qualitätskontrolle","proc.s4d":"XRF- und Salzsprühtest für Freigabe.","proc.s5":"Verpackung & Lieferung","proc.s5d":"Sichere Verpackung und pünktliche Lieferung.",
+  "sectors.eyebrow":"Servicebereiche","sectors.title":"BRANCHEN",
+  "sector.auto":"Automotive","sector.construction":"Bauwesen","sector.machinery":"Maschinenbau","sector.electrical":"Elektrotechnik & Elektronik","sector.aviation":"Luft- und Raumfahrt","sector.appliance":"Haushaltsgeräte","sector.marine":"Schifffahrt","sector.energy":"Energie & Infrastruktur",
+  "gallery.eyebrow":"Referenzbilder","gallery.title":"BESCHICHTUNGSGALERIE","gallery.see_all":"Gesamte Galerie →","gallery.page_title":"BESCHICHTUNGSGALERIE","gallery.page_eyebrow":"Beschichtungsprozess","gallery.page_sub":"Visuelle Referenzen verschiedener Beschichtungsarten.",
+  "stage.0":"Fettige Schraube","stage.1":"Entfettung","stage.2":"Beizen","stage.3":"Strahlen","stage.4":"Beschichtung","stage.5":"Fertiges Produkt",
+  "stage.desc.0":"Die Rohschraube weist Fertigungsölrückstände und Rostschichten auf. Diese Verunreinigungen verhindern die Haftung der Beschichtung.",
+  "stage.desc.1":"Die Schraube wird in einem alkalischen Entfettungsbad bei 60–80°C gewaschen. Alle organischen Verunreinigungen werden vollständig entfernt.",
+  "stage.desc.2":"Die Oxidschicht und der Oberflächenrost werden in einem verdünnten Säurebad aufgelöst. Die Metalloberfläche wird für die Beschichtung aktiviert.",
+  "stage.desc.3":"Die Oberfläche wird mit Druckstrahlmitteln aufgerauht. Alle Mikro-Verunreinigungen und Grate werden für optimale Haftung entfernt.",
+  "stage.desc.4":"Zinkionen werden in einem Elektrolytbad auf der Metalloberfläche abgeschieden. Eine kontrollierte Schichtdicke von 8–12 μm wird erreicht.",
+  "stage.desc.5":"Beschichtung abgeschlossen. Die Oberfläche bietet 480 Stunden Salzsprühwiderstand. Chromatnachbehandlung verbessert den Korrosionsschutz.",
+  "filter.all":"Alle","filter.zinc":"Zinkbeschichtung","filter.phosphate":"Phosphat","filter.geomet":"Geomet® / Lamelle","filter.nickel":"Nickel & Sonder","filter.paint":"Lackierung","filter.fastener":"Verbindungselemente",
+  "marquee.zinc":"Elektrolytische Zinkbeschichtung","marquee.phosphate":"Phosphatbeschichtung","marquee.nickel":"Nickelbeschichtung","marquee.geomet":"Geomet® Beschichtung","marquee.lamel":"Zinklamellenbeschichtung","marquee.passivation":"Passivierung","marquee.paint":"Pulverbeschichtung","marquee.hydrogen":"Wasserstoffentsprödung",
+  "breadcrumb.about":"Startseite / <em>Über uns</em>","breadcrumb.services":"Startseite / <em>Dienstleistungen</em>","breadcrumb.gallery":"Startseite / <em>Galerie</em>","breadcrumb.quality":"Startseite / <em>Qualität</em>","breadcrumb.sustain":"Startseite / <em>Nachhaltigkeit</em>","breadcrumb.career":"Startseite / <em>Karriere</em>","breadcrumb.contact":"Startseite / <em>Kontakt</em>",
+  "about.title":"WER WIR SIND","about.sub":"Ein führendes Beschichtungsunternehmen mit 20 Jahren Geschichte und Expertenwissen.","about.history_ey":"Unsere Geschichte","about.history_title":"ÜBER MARS KAPLAMA","about.p1":"Mars Kaplama GmbH wurde 2004 im Industriegebiet Manisa gegründet.","about.p2":"Mit 12.000 m² Produktionsfläche, automatisierten Linien und 180+ Spezialisten beschichten wir über 50 Mio. Teile pro Jahr.","about.p3":"Wir beliefern Automotive, Bauwesen, Haushaltsgeräte, Elektronik, Möbel und Luft- und Raumfahrt.","about.facility":"WERKSFOTO","about.team_ey":"Management","about.team_title":"MANAGEMENT",
+  "tl.2004":"Gründung in Manisa OIZ. Erste Zinkbeschichtungslinie in Betrieb.","tl.2008":"Verdoppelung der Produktionsfläche. ISO 9001 zertifiziert.","tl.2013":"Geomet®-lizenzierte Linie installiert. Einstieg in den Automotive-Bereich.","tl.2018":"ISO 14001 Zertifizierung. Vollautomatisierung abgeschlossen.","tl.2024":"20. Jubiläum. 500+ Kunden, 50M+ Teile/Jahr Kapazität.",
+  "team.ceo":"Geschäftsführer & Gründer","team.prod":"Produktionsleiter","team.qa":"Qualitätssicherungsleiter","team.rnd":"F&E & Ingenieurwesen Leiter","team.sales":"Vertriebs- & Marketingleiter","team.log":"Logistik & Beschaffungsleiter",
+  "services.title":"BESCHICHTUNGSLEISTUNGEN","services.sub":"11 Beschichtungsarten für alle Branchen.","services.list_ey":"Unsere Beschichtungsarten","services.list_title":"BESCHICHTUNGSARTEN","services.table_ey":"Technische Daten","services.table_title":"VERGLEICHSTABELLE","services.table_sub":"Beschichtungsarten – Technischer Vergleich",
+  "table.type":"Beschichtungsart","table.thick":"Dicke (μm)","table.salt":"Salzsprüh (h)","table.temp":"Temp. Beständigkeit","table.sector":"Typische Branche",
+  "tbl.zinc_blue":"El. Zink (Blauchromatierung)","tbl.zinc_yellow":"El. Zink (Gelbchromatierung)","tbl.znni":"El. Zink-Nickel","tbl.auto_air":"Automotive, Luftfahrt","tbl.oem":"Automotive OEM","tbl.general":"Allgemeine Industrie","tbl.machine":"Maschinenbau, Bauwesen","tbl.phosphate":"Zinkphosphat","tbl.primer":"Lackieruntergrund","tbl.powder":"Pulverbeschichtung","tbl.furniture":"Möbel, Bauwesen",
+  "quality.title":"QUALITÄT & ZERTIFIZIERUNG","quality.sub":"Volle Einhaltung internationaler Normen und kontinuierliches Verbesserungsengagement.","quality.cert_ey":"Zertifizierungen","quality.cert_title":"INTERNATIONALE ZERTIFIZIERUNGEN","quality.test_ey":"Prüfinfrastruktur","quality.test_title":"QUALITÄTSKONTROLLTESTS",
+  "cert.9001":"Qualitätsmanagementsystem. Alle Produktionsprozesse dokumentiert und auditiert.","cert.14001":"Umweltmanagementsystem. Jede Produktionsentscheidung berücksichtigt Umweltauswirkungen.","cert.iatf":"Automotive-Qualitätsmanagementsystem. Wichtigster OEM-Standard erfüllt.","cert.rohs":"Volle EU-Richtlinienkonformität. Schadstofffreie Beschichtungslösungen.","cert.din":"Norm für elektrolytische Zink- und Zinklegierungsbeschichtungen.","cert.astm":"Prüfnormen für Zinkbeschichtung und Wasserstoffentsprödung.",
+  "test.salt":"Salzsprühtest","test.salt_u":"Stunden Kapazität","test.salt_d":"Korrosionsbeständigkeitsprüfung nach ISO 9227.","test.xrf":"XRF-Schichtdickenmessung","test.xrf_d":"Zerstörungsfreie Dickenmessung per Röntgenfluoreszenz.","test.h2":"Wasserstoffentsprödungstest","test.h2_d":"Dauerlastversuch für hochfeste Teile.","test.torque":"Anzugsmoment","test.torque_d":"Reibungskoeffizientmessung nach VDA 235-204.","test.clean":"Technische Sauberkeit","test.clean_d":"Partikelkontaminationsanalyse und Berichterstattung.","test.visual":"Sichtprüfung","test.visual_u":"optische Kontrolle","test.visual_d":"Oberflächenfehler- und Maßtoleranzprüfung.",
+  "sustain.title":"NACHHALTIGKEIT","sustain.sub":"Verantwortungsvolle Produktion für die Zukunft.","sustain.ey":"Unser Ansatz","sustain.env_title":"UMWELTPOLITIK","sustain.env_p":"Bei Mars Kaplama betrachten wir Umweltmanagement als integralen Bestandteil unserer Produktionsprozesse.",
+  "pillar.env":"Umweltschutz","pillar.env_d":"Wir minimieren unseren Umweltfußabdruck mit Abwasserbehandlung und geschlossenem Chemikalienkreislauf.","pillar.people":"Mitarbeiterwohl","pillar.people_d":"Gesundheitsschutz hat Priorität. Regelmäßige Schulungen und Untersuchungen.","pillar.energy":"Energieeffizienz","pillar.energy_d":"Überwachungssysteme helfen uns, den Verbrauch jährlich zu senken.","pillar.safety":"Produktsicherheit","pillar.safety_d":"Volle Konformität mit RoHS und REACH. Frei von Chrom-VI und Einschränkungen.","pillar.supply":"Lieferkettenverantwortung","pillar.supply_d":"Wir bewerten Lieferanten nach Nachhaltigkeitskriterien.","pillar.community":"Gesellschaftlicher Beitrag","pillar.community_d":"Partnerschaften mit lokalen Bildungseinrichtungen und Praktikumsprogramme.",
+  "env.water":"Wasserverbrauch (5 Jahre)","env.energy":"Energieverbrauch (5 Jahre)","env.chem":"Chemikalienrückgewinnungsrate","env.zero":"Null","env.acc":"Arbeitsunfälle (Letzte 3 Jahre)",
+  "career.title":"KARRIERE","career.sub":"Werden Sie Teil unseres wachsenden Teams.","career.benefits_ey":"Warum Mars Kaplama?","career.benefits_title":"MITARBEITERVORTEILE","career.jobs_ey":"Offene Stellen","career.jobs_title":"STELLENANGEBOTE","career.open_ey":"Keine passende Stelle?","career.open_p":"Schicken Sie uns Ihren Lebenslauf. Wir freuen uns über motivierte Bewerber.","career.send_cv":"Lebenslauf senden →",
+  "benefit.salary":"Wettbewerbsfähiges Gehalt","benefit.salary_d":"Überdurchschnittliche Vergütung mit jährlichen Leistungsbewertungen.","benefit.career":"Karriereentwicklung","benefit.career_d":"Schulungsbudget, Zertifizierungsunterstützung und interne Beförderung.","benefit.health":"Krankenversicherung","benefit.health_d":"Private Krankenversicherung mit Familienabdeckung.","benefit.flex":"Flexible Arbeit","benefit.flex_d":"Hybrides und flexibles Arbeiten für geeignete Positionen.","benefit.social":"Sozialleistungen","benefit.social_d":"Essens-, Fahrt- und Heizkostenzuschuss sowie Sonderzahlungen.","benefit.team":"Teamgeist","benefit.team_d":"Teamevents, Betriebsausflüge und starke Teamkultur.",
+  "job.1":"Beschichtungsprozessingenieur","job.2":"Qualitätskontrollspezialist","job.3":"Technischer Vertriebsingenieur","job.4":"Logistikkoordinator","job.5":"Produktionsmitarbeiter","job.active":"Aktiv","job.passive":"Geschlossen","job.full":"Vollzeit","job.shift":"Schicht","job.turkey":"Türkei landesweit",
+  "dept.prod":"Produktion / F&E","dept.qa":"Qualitätssicherung","dept.sales":"Vertrieb & Marketing","dept.log":"Logistik","dept.prod2":"Produktion",
+  "contact.title":"KONTAKT & ANGEBOT","contact.sub":"Kontaktieren Sie uns für technische Anfragen, Angebote oder Musterbeschichtungen.","contact.info_ey":"Kontaktinformationen","contact.reach":"KONTAKT","contact.reach_d":"Unser Team steht für Beschichtungsauswahl und Angebote bereit.","contact.addr_l":"Adresse","contact.phone_l":"Telefon","contact.email_l":"E-Mail","contact.hours_l":"Öffnungszeiten","contact.hours_v":"Mo–Fr: 08:00–18:00 | Sa: 08:00–13:00","contact.map":"KARTE","contact.form_ey":"Angebotsanfrage",
+  "form.name":"Vollständiger Name *","form.name_ph":"Vollständiger Name","form.company":"Unternehmen *","form.company_ph":"Unternehmensname","form.phone":"Telefon *","form.email":"E-Mail *","form.coating":"Beschichtungsart *","form.coating_ph":"Beschichtungsart wählen","form.qty":"Geschätzte Menge","form.qty_ph":"z.B. 50.000 Stk/Monat","form.size":"Teilegröße","form.message":"Ihre Nachricht","form.message_ph":"Technische Anforderungen, Normen und weitere Details...","form.submit":"Angebotsanfrage senden →","form.sent":"✓ Anfrage erhalten",
+  "footer.tagline":"20 Jahre Erfahrung in industrieller Oberflächenbeschichtung mit internationalen Qualitätsstandards.","footer.about":"Über uns","footer.newsletter":"Newsletter","footer.nl_ph":"Ihre E-Mail-Adresse","footer.subscribe":"Abonnieren","footer.copy":"© 2025 Mars Kaplama Ltd. — Alle Rechte vorbehalten.","footer.cookie":"Cookie-Richtlinie","footer.terms":"Nutzungsbedingungen","footer.kvkk":"Datenschutz",
+  "lb.close":"✕ SCHLIESSEN","lb.prev":"← ZURÜCK","lb.next":"WEITER →"
+};
+
+// ═══════════════════════════════════════
+// LANGUAGE ENGINE
+// ═══════════════════════════════════════
+let currentLang = 'tr';
+const langConfig = {
+  tr: { flag: '🇹🇷', label: 'TR' },
+  en: { flag: '🇬🇧', label: 'EN' },
+  de: { flag: '🇩🇪', label: 'DE' }
+};
+
+function applyLang(lang) {
+  currentLang = lang;
+  const dict = T[lang];
+  document.documentElement.lang = lang;
+
+  // Update lang selector display
+  document.getElementById('lang-flag').textContent = langConfig[lang].flag;
+  document.getElementById('lang-label').textContent = langConfig[lang].label;
+  document.querySelectorAll('.lang-option').forEach(o => {
+    o.classList.toggle('active', o.dataset.lang === lang);
+  });
+
+  // Apply translations to data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  // Apply innerHTML translations (for spans inside)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  // Apply placeholder translations
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+
+  // Update page title
+  const titles = { tr:'Mars Kaplama – Endüstriyel Yüzey Kaplama', en:'Mars Kaplama – Industrial Surface Coating', de:'Mars Kaplama – Industrielle Oberflächenbeschichtung' };
+  document.title = titles[lang];
+
+  // Rebuild gallery if it is visible
+  if (typeof buildGallery === 'function') buildGallery(currentFilter);
+}
+
+// ═══════════════════════════════════════
+// THEME ENGINE
+// ═══════════════════════════════════════
+let isDark = true;
+
+// ═══════════════════════════════════════
+// GALLERY DATA
+// ═══════════════════════════════════════
+// ═══════════════════════════════════════
+// BOLT COATING ANIMATION — Generic per-page
+// ═══════════════════════════════════════
+const STAGES_DATA = {
+  tr: [
+    { label:'Yağlı Cıvata',  desc:'Ham cıvata yüzeyinde üretim kalıntısı yağ ve pas tabakası bulunur. Bu kirlilikler kaplamanın tutunmasını engeller.' },
+    { label:'Yağ Giderme',   desc:'Alkalin yağ giderme banyosunda cıvata 60–80°C\'de yıkanır. Tüm organik kirlilikler ve yağ kalıntıları uzaklaştırılır.' },
+    { label:'Asitleme',      desc:'Seyreltik asit banyosunda oksit tabakası ve yüzey pası çözündürülür. Metal yüzey kaplama için aktif hale getirilir.' },
+    { label:'Kumlama',       desc:'Basınçlı abrasif tanecikleriyle yüzey pürüzlendirilir. Mikro düzeyde tüm kirlilikler ve çapaklar giderilir.' },
+    { label:'Kaplama',       desc:'Elektrolitik banyoda çinko iyonları metal yüzeye biriktirilir. Kontrollü parametrelerle 8–12 μm kaplama kalınlığı elde edilir.' },
+    { label:'Bitmiş Ürün',   desc:'Kaplama tamamlandı. Yüzey tuz spreyine karşı 480 saat direnç gösterir. Kromat işlemi ile korozyon koruması artırıldı.' }
+  ],
+  en: [
+    { label:'Oily Bolt',        desc:'The raw bolt surface contains manufacturing oil residue and rust layers. These contaminants prevent the coating from adhering properly.' },
+    { label:'Degreasing',       desc:'The bolt is washed in an alkaline degreasing bath at 60–80°C. All organic contaminants and oil residues are completely removed.' },
+    { label:'Acid Pickling',    desc:'The oxide layer and surface rust are dissolved in a dilute acid bath. The metal surface is activated and prepared for coating.' },
+    { label:'Shot Blasting',    desc:'The surface is roughened with pressurized abrasive particles. All micro-level contamination and burrs are removed for optimal adhesion.' },
+    { label:'Coating',          desc:'Zinc ions are deposited onto the metal surface in an electrolytic bath. A controlled 8–12 μm coating thickness is achieved.' },
+    { label:'Finished Product', desc:'Coating complete. The surface offers 480 hours of salt spray resistance. Chromate post-treatment further enhances corrosion protection.' }
+  ],
+  de: [
+    { label:'Fettige Schraube', desc:'Die Rohschraube weist Fertigungsölrückstände und Rostschichten auf. Diese Verunreinigungen verhindern die Haftung der Beschichtung.' },
+    { label:'Entfettung',       desc:'Die Schraube wird in einem alkalischen Entfettungsbad bei 60–80°C gewaschen. Alle organischen Verunreinigungen werden vollständig entfernt.' },
+    { label:'Beizen',           desc:'Die Oxidschicht und der Oberflächenrost werden in einem verdünnten Säurebad aufgelöst. Die Metalloberfläche wird für die Beschichtung aktiviert.' },
+    { label:'Strahlen',         desc:'Die Oberfläche wird mit Druckstrahlmitteln aufgerauht. Alle Mikro-Verunreinigungen und Grate werden für optimale Haftung entfernt.' },
+    { label:'Beschichtung',     desc:'Zinkionen werden in einem Elektrolytbad auf der Metalloberfläche abgeschieden. Eine kontrollierte Schichtdicke von 8–12 μm wird erreicht.' },
+    { label:'Fertiges Produkt', desc:'Beschichtung abgeschlossen. Die Oberfläche bietet 480 Stunden Salzsprühwiderstand. Chromatnachbehandlung verbessert den Korrosionsschutz.' }
+  ]
+};
+
+// Track one RAF handle per page
+const boltAnims = {};
+
+// Stage visual configs (shared)
+const STAGE_CONFIGS = [
+  { boltBody:'#5a4a3a', boltHead:'#4a3c2e', rust:true,  oilSheen:true,  particles:null,   bath:null,      shine:false },
+  { boltBody:'#6b5540', boltHead:'#5c4635', rust:true,  oilSheen:false, particles:null,   bath:'#1a4a7a', shine:false },
+  { boltBody:'#7a6550', boltHead:'#6b5640', rust:false, oilSheen:false, particles:null,   bath:'#4a6a1a', shine:false },
+  { boltBody:'#8a7a6a', boltHead:'#7a6a5a', rust:false, oilSheen:false, particles:'blast',bath:null,      shine:false },
+  { boltBody:'#7890a0', boltHead:'#6880a0', rust:false, oilSheen:false, particles:'zinc', bath:'#0a1e3a', shine:false },
+  { boltBody:'#a8c8e0', boltHead:'#90b8d8', rust:false, oilSheen:false, particles:null,   bath:null,      shine:true  },
+];
+
+function shadeColor(hex, pct) {
+  const n = parseInt(hex.replace('#',''), 16);
+  const r = Math.max(0, Math.min(255, ((n>>16)&255) + pct));
+  const g = Math.max(0, Math.min(255, ((n>>8)&255) + pct));
+  const b = Math.max(0, Math.min(255, (n&255) + pct));
+  return `rgb(${r},${g},${b})`;
+}
+
+function randomParticle(type, CX, H, SHANK_W) {
+  if (type === 'blast') {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 2 + Math.random() * 4;
+    return { x:CX+(Math.random()-.5)*SHANK_W, y:H*.45, vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed-1, life:1, type:'blast', size:1.5+Math.random()*2.5, color:`hsl(${30+Math.random()*40},80%,${50+Math.random()*30}%)` };
+  }
+  if (type === 'zinc') {
+    return { x:CX+(Math.random()-.5)*200, y:H*.82+Math.random()*40, vx:(Math.random()-.5)*.5, vy:-(1+Math.random()*2.5), life:1, type:'zinc', size:2+Math.random()*3, color:`hsl(${200+Math.random()*30},${60+Math.random()*30}%,${55+Math.random()*20}%)` };
+  }
+}
+
+/**
+ * Start the bolt animation for a specific page.
+ * @param {string} pageId  e.g. 'about', 'services', 'gallery', …
+ * @param {number} [jumpStage]  optional stage to jump to immediately
+ */
+function startBoltAnimation(pageId, jumpStage) {
+  const canvas = document.getElementById('bolt-canvas-' + pageId);
+  const pillsContainer = document.getElementById('cs-' + pageId);
+  const numEl  = document.getElementById('sdb-num-'  + pageId);
+  const textEl = document.getElementById('sdb-text-' + pageId);
+  const replayBtn = document.getElementById('replay-btn-' + pageId);
+
+  if (!canvas || !pillsContainer) return;
+
+  // Stop any running animation for this page
+  if (boltAnims[pageId]) { cancelAnimationFrame(boltAnims[pageId]); boltAnims[pageId] = null; }
+
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const CX = W/2, CY = H/2;
+
+  // Bolt geometry
+  const HEAD_W=88, HEAD_H=54;
+  const HEAD_Y=CY-80;
+  const SHANK_W=36;
+  const SHANK_Y_START=HEAD_Y+HEAD_H;
+  const SHANK_LEN=130;
+  const SHANK_Y_END=SHANK_Y_START+SHANK_LEN;
+  const WASHER_H=10, TIP_H=22, THREAD_PITCH=12;
+
+  function hexPoints(cx,cy,w,h){
+    const pts=[];
+    for(let i=0;i<6;i++){const a=(Math.PI/3)*i-Math.PI/6;pts.push([cx+(w/2)*Math.cos(a),cy+(h/2)*Math.sin(a)]);}
+    return pts;
+  }
+
+  // State
+  let stage = (jumpStage !== undefined) ? Math.max(0, Math.min(5, jumpStage)) : 0;
+  let stageT = (jumpStage !== undefined) ? 0 : 0;
+  const STAGE_DUR = 320; // ~5s per stage at 60fps — slower
+  let particles = [];
+  let coatLevel = (stage >= 5) ? 1 : (stage === 4 ? 0 : 0);
+  let frame = 0;
+
+  if (replayBtn) replayBtn.classList.remove('show');
+
+  // Update side-panel pills + description
+  function updateUI(s) {
+    const pills = pillsContainer.querySelectorAll('.cs-pill');
+    pills.forEach((p,i) => {
+      p.classList.toggle('active', i === s);
+      p.classList.toggle('done', i < s);
+    });
+    const data = STAGES_DATA[currentLang] || STAGES_DATA.tr;
+    if (numEl)  numEl.textContent  = String(s+1).padStart(2,'0');
+    if (textEl) textEl.textContent = data[s]?.desc || '';
+  }
+
+  updateUI(stage);
+
+  // ── Draw one frame ──
+  function drawBolt(cfg, coatT) {
+    const bodyColor = cfg.boltBody;
+    const headColor = cfg.boltHead;
+    const coatColor = '#a8c8e0';
+
+    // Bath
+    if (cfg.bath) {
+      ctx.save();
+      const bathTop = CY - 10;
+      ctx.fillStyle = cfg.bath + '55';
+      ctx.fillRect(CX-140, bathTop, 280, H-bathTop);
+      for (let b=0;b<8;b++) {
+        const bx = CX-100+((b*47+frame*.7)%200);
+        const by = H-10-((frame*.8+b*33)%(H-bathTop));
+        ctx.beginPath(); ctx.arc(bx,by,3+b%3,0,Math.PI*2);
+        ctx.strokeStyle = cfg.bath+'aa'; ctx.lineWidth=1; ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // Washer
+    ctx.save();
+    ctx.fillStyle=headColor;
+    ctx.fillRect(CX-SHANK_W*.85, SHANK_Y_START, SHANK_W*1.7, WASHER_H);
+    if(coatT>0){ctx.fillStyle=coatColor;ctx.globalAlpha=coatT*.9;ctx.fillRect(CX-SHANK_W*.85,SHANK_Y_START,SHANK_W*1.7,WASHER_H);ctx.globalAlpha=1;}
+    ctx.restore();
+
+    // Hex head
+    const hpts=hexPoints(CX,HEAD_Y+HEAD_H/2,HEAD_W,HEAD_H);
+    ctx.save();
+    ctx.beginPath();
+    hpts.forEach((p,i)=>i===0?ctx.moveTo(p[0],p[1]):ctx.lineTo(p[0],p[1]));
+    ctx.closePath();
+    const hg=ctx.createLinearGradient(CX-HEAD_W/2,HEAD_Y,CX+HEAD_W/2,HEAD_Y);
+    hg.addColorStop(0,shadeColor(headColor,-25));
+    hg.addColorStop(.35,headColor);
+    hg.addColorStop(.65,shadeColor(headColor,15));
+    hg.addColorStop(1,shadeColor(headColor,-20));
+    ctx.fillStyle=hg; ctx.fill();
+    if(coatT>0){
+      ctx.beginPath();
+      hpts.forEach((p,i)=>i===0?ctx.moveTo(p[0],p[1]):ctx.lineTo(p[0],p[1]));
+      ctx.closePath();
+      ctx.fillStyle=coatColor;ctx.globalAlpha=coatT*.85;ctx.fill();ctx.globalAlpha=1;
+    }
+    ctx.beginPath();
+    hpts.forEach((p,i)=>i===0?ctx.moveTo(p[0],p[1]):ctx.lineTo(p[0],p[1]));
+    ctx.closePath();
+    ctx.strokeStyle='rgba(0,0,0,.25)';ctx.lineWidth=1.5;ctx.stroke();
+    const ipts=hexPoints(CX,HEAD_Y+HEAD_H/2,HEAD_W*.5,HEAD_H*.5);
+    ctx.beginPath();
+    ipts.forEach((p,i)=>i===0?ctx.moveTo(p[0],p[1]):ctx.lineTo(p[0],p[1]));
+    ctx.closePath();
+    ctx.strokeStyle='rgba(0,0,0,.18)';ctx.lineWidth=1;ctx.stroke();
+    ctx.restore();
+
+    // Shank
+    ctx.save();
+    const sg=ctx.createLinearGradient(CX-SHANK_W/2,0,CX+SHANK_W/2,0);
+    sg.addColorStop(0,shadeColor(bodyColor,-30));
+    sg.addColorStop(.3,bodyColor);
+    sg.addColorStop(.7,shadeColor(bodyColor,20));
+    sg.addColorStop(1,shadeColor(bodyColor,-25));
+    ctx.fillStyle=sg;
+    ctx.fillRect(CX-SHANK_W/2,SHANK_Y_START+WASHER_H,SHANK_W,SHANK_LEN-WASHER_H-TIP_H);
+    if(coatT>0){ctx.fillStyle=coatColor;ctx.globalAlpha=coatT*.85;ctx.fillRect(CX-SHANK_W/2,SHANK_Y_START+WASHER_H,SHANK_W,SHANK_LEN-WASHER_H-TIP_H);ctx.globalAlpha=1;}
+    ctx.restore();
+
+    // Threads
+    ctx.save();
+    const tS=SHANK_Y_START+WASHER_H+6, tE=SHANK_Y_END-TIP_H-4;
+    for(let ty=tS;ty<tE;ty+=THREAD_PITCH){
+      ctx.fillStyle=`rgba(255,255,255,${.18+Math.sin((ty-tS)/6)*.08})`;
+      ctx.fillRect(CX-SHANK_W/2+1,ty,SHANK_W-2,3);
+      ctx.fillStyle='rgba(0,0,0,.12)';
+      ctx.fillRect(CX-SHANK_W/2+1,ty+3,SHANK_W-2,2);
+    }
+    if(coatT>0){
+      for(let ty=tS;ty<tE;ty+=THREAD_PITCH){
+        ctx.fillStyle=`rgba(168,200,224,${coatT*.5})`;
+        ctx.fillRect(CX-SHANK_W/2+1,ty,SHANK_W-2,3);
+      }
+    }
+    ctx.restore();
+
+    // Tip
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(CX-SHANK_W/2,SHANK_Y_END-TIP_H);
+    ctx.lineTo(CX+SHANK_W/2,SHANK_Y_END-TIP_H);
+    ctx.lineTo(CX+SHANK_W/2-8,SHANK_Y_END);
+    ctx.lineTo(CX-SHANK_W/2+8,SHANK_Y_END);
+    ctx.closePath();
+    ctx.fillStyle=shadeColor(bodyColor,-20);ctx.fill();
+    if(coatT>0){ctx.fillStyle=coatColor;ctx.globalAlpha=coatT*.8;ctx.fill();ctx.globalAlpha=1;}
+    ctx.restore();
+
+    // Rust
+    if(cfg.rust){
+      ctx.save(); ctx.globalAlpha=.65;
+      [[CX-8,HEAD_Y+18,14,10],[CX+12,HEAD_Y+30,10,8],[CX-5,CY-20,16,12],[CX+8,CY+10,10,14],[CX-10,CY+40,18,10]]
+        .forEach(([rx,ry,rw,rh])=>{
+          const rg=ctx.createRadialGradient(rx,ry,0,rx,ry,rw);
+          rg.addColorStop(0,'#8b3a0a');rg.addColorStop(1,'transparent');
+          ctx.fillStyle=rg;ctx.beginPath();ctx.ellipse(rx,ry,rw,rh,0,0,Math.PI*2);ctx.fill();
+        });
+      ctx.restore();
+    }
+
+    // Oil sheen
+    if(cfg.oilSheen){
+      ctx.save();
+      const oa=(Math.sin(frame*.04)+1)*.5;
+      const og=ctx.createLinearGradient(CX-SHANK_W/2-5,CY-60,CX+SHANK_W/2+5,CY+60);
+      og.addColorStop(0,'rgba(80,60,20,0)');
+      og.addColorStop(.3+oa*.2,'rgba(140,110,40,.22)');
+      og.addColorStop(.6,'rgba(60,80,120,.16)');
+      og.addColorStop(1,'rgba(80,60,20,0)');
+      ctx.fillStyle=og;ctx.globalAlpha=.7;
+      ctx.beginPath();
+      ctx.moveTo(CX-HEAD_W/2,HEAD_Y);ctx.lineTo(CX+HEAD_W/2,HEAD_Y);
+      ctx.lineTo(CX+SHANK_W/2+2,SHANK_Y_END);ctx.lineTo(CX-SHANK_W/2-2,SHANK_Y_END);
+      ctx.closePath();ctx.fill();ctx.restore();
+      const dY=SHANK_Y_END-10+Math.sin(frame*.06)*6;
+      ctx.save();ctx.globalAlpha=.45;
+      ctx.beginPath();ctx.arc(CX-6,dY+14,5,0,Math.PI*2);
+      ctx.fillStyle='#6a4a10';ctx.fill();ctx.restore();
+    }
+
+    // Shine
+    if(cfg.shine&&coatT>.6){
+      ctx.save();
+      ctx.globalAlpha=(coatT-.6)/.4*.55;
+      const shg=ctx.createLinearGradient(CX-SHANK_W/2,HEAD_Y,CX-SHANK_W/2+14,SHANK_Y_END);
+      shg.addColorStop(0,'rgba(255,255,255,0)');
+      shg.addColorStop(.25,'rgba(255,255,255,.7)');
+      shg.addColorStop(.5,'rgba(255,255,255,0)');
+      ctx.fillStyle=shg;
+      ctx.fillRect(CX-SHANK_W/2,HEAD_Y,SHANK_W/3,SHANK_LEN+HEAD_H+WASHER_H+TIP_H);
+      ctx.restore();
+    }
+  }
+
+  function tick() {
+    frame++;
+    ctx.clearRect(0,0,W,H);
+
+    // Orbit rings
+    ctx.save(); ctx.globalAlpha=.12; ctx.strokeStyle='#c8922a'; ctx.lineWidth=1;
+    [160,195,210].forEach(r=>{
+      ctx.beginPath();ctx.arc(CX,CY,r,0,Math.PI*2);
+      ctx.setLineDash([4+r*.05,8]);ctx.stroke();
+    });
+    ctx.setLineDash([]); ctx.restore();
+
+    // Rotating dot
+    ctx.save(); ctx.globalAlpha=.4; ctx.fillStyle='#c8922a';
+    const ang=(frame/300)*Math.PI*2;
+    ctx.beginPath();ctx.arc(CX+210*Math.cos(ang),CY+210*Math.sin(ang),5,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+
+    const cfg = STAGE_CONFIGS[stage];
+
+    // Particles
+    if(cfg.particles==='blast'&&Math.random()<.55) particles.push(randomParticle('blast',CX,H,SHANK_W));
+    if(cfg.particles==='zinc' &&Math.random()<.7)  particles.push(randomParticle('zinc', CX,H,SHANK_W));
+    particles=particles.filter(p=>p.life>0);
+    ctx.save();
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      p.vy+=(p.type==='blast')?.18:.05;
+      p.life-=(p.type==='blast')?.028:.018;
+      ctx.globalAlpha=p.life*.9;ctx.fillStyle=p.color;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+    });
+    ctx.restore();
+
+    // Coat level
+    if(stage===4) coatLevel=Math.min(1,stageT*1.6);
+    else if(stage===5) coatLevel=1;
+    else coatLevel=0;
+
+    drawBolt(cfg, coatLevel);
+
+    // Stage label badge
+    const data=STAGES_DATA[currentLang]||STAGES_DATA.tr;
+    const lbl=data[stage]?.label||'';
+    ctx.save();
+    ctx.fillStyle='#c8922a';ctx.globalAlpha=.9;
+    ctx.fillRect(CX-70,H-48,140,28);
+    ctx.fillStyle='#0f1623';ctx.globalAlpha=1;
+    ctx.font='700 12px "Barlow Condensed",sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText(`${String(stage+1).padStart(2,'0')} — ${lbl.toUpperCase()}`,CX,H-28);
+    ctx.restore();
+
+    // Progress bar
+    const pW=W*.7,pX=CX-pW/2,pY=H-12;
+    ctx.save();
+    ctx.fillStyle='rgba(200,146,42,.15)';ctx.fillRect(pX,pY,pW,4);
+    ctx.fillStyle='#c8922a';ctx.fillRect(pX,pY,pW*((stage+stageT)/6),4);
+    ctx.restore();
+
+    // Advance
+    stageT += 1/STAGE_DUR;
+    if(stageT>=1){
+      stageT=0; particles=[];
+      if(stage<5){ stage++; updateUI(stage); }
+      else {
+        if(replayBtn) replayBtn.classList.add('show');
+        return;
+      }
+    }
+
+    boltAnims[pageId] = requestAnimationFrame(tick);
+  }
+
+  boltAnims[pageId] = requestAnimationFrame(tick);
+
+  // ── Clickable pills — jump to that stage ──
+  pillsContainer.querySelectorAll('.cs-pill').forEach(pill => {
+    // Remove old listeners by cloning
+    const fresh = pill.cloneNode(true);
+    pill.parentNode.replaceChild(fresh, pill);
+    fresh.addEventListener('click', () => {
+      const s = parseInt(fresh.dataset.stage);
+      if (isNaN(s)) return;
+      // Restart animation from chosen stage
+      startBoltAnimation(pageId, s);
+    });
+  });
+
+  // Replay
+  if (replayBtn) {
+    const freshRb = replayBtn.cloneNode(true);
+    replayBtn.parentNode.replaceChild(freshRb, replayBtn);
+    freshRb.id = 'replay-btn-' + pageId;
+    freshRb.addEventListener('click', () => { freshRb.classList.remove('show'); startBoltAnimation(pageId, 0); });
+  }
+}
+
+// Pages that carry the animation (all except home)
+const ANIM_PAGES = ['about','services','gallery','quality','sustainability','career','contact'];
+
+// Start animation when a page is shown
+function startGalleryAnim() { /* kept for backward compat, now handled in showPage */ }
+
+const galleryData = [
+  { id:1,  cat:'fastener',  title_tr:'Çinko Kaplı Cıvata Seti',       title_en:'Zinc-Coated Bolt Set',       title_de:'Zinkverzinkter Schraubensatz', sub_tr:'M8-M16 Elektrolitik Çinko', h:280, src:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
+  { id:2,  cat:'zinc',      title_tr:'Mavi Kromat Kaplama',             title_en:'Blue Chromate Coating',      title_de:'Blaue Chromatierung', sub_tr:'Elektrolitik Çinko', h:200, src:'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=80' },
+  { id:3,  cat:'phosphate', title_tr:'Mangan Fosfat Yüzey',             title_en:'Manganese Phosphate Surface',title_de:'Mangan-Phosphatoberfläche', sub_tr:'Fosfat – Mat Koyu', h:240, src:'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&q=80' },
+  { id:4,  cat:'fastener',  title_tr:'Metrik Cıvata Koleksiyonu',       title_en:'Metric Bolt Collection',     title_de:'Metrische Schraubenkollektion', sub_tr:'Çeşitli Boy ve Kaplama', h:200, src:'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80' },
+  { id:5,  cat:'geomet',    title_tr:'Geomet® 500 Kaplama',             title_en:'Geomet® 500 Coating',        title_de:'Geomet® 500 Beschichtung', sub_tr:'Çinko Lamel – OEM', h:260, src:'https://images.unsplash.com/photo-1565793979098-1ec73b56d6e9?w=600&q=80' },
+  { id:6,  cat:'paint',     title_tr:'Toz Boya Uygulaması',             title_en:'Powder Coating Application', title_de:'Pulverbeschichtungsanwendung', sub_tr:'RAL 9005 Siyah', h:220, src:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
+  { id:7,  cat:'fastener',  title_tr:'Flanşlı Somun Serisi',            title_en:'Flange Nut Series',          title_de:'Flanschmutternserie', sub_tr:'DIN 6923 – Çinko Kaplı', h:200, src:'https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=600&q=80' },
+  { id:8,  cat:'nickel',    title_tr:'Elektrolitik Nikel Yüzey',        title_en:'Electrolytic Nickel Surface', title_de:'Elektrolytische Nickeloberfläche', sub_tr:'Parlak Nikel', h:260, src:'https://images.unsplash.com/photo-1603732551658-5fabbafa84eb?w=600&q=80' },
+  { id:9,  cat:'zinc',      title_tr:'Sarı Kromat Kaplama',             title_en:'Yellow Chromate Coating',    title_de:'Gelbe Chromatierung', sub_tr:'Elektrolitik Çinko', h:220, src:'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=600&q=80' },
+  { id:10, cat:'phosphate', title_tr:'Fosfat Boya Altı Katmanı',        title_en:'Phosphate Sub-Paint Layer',  title_de:'Phosphat-Grundierschicht', sub_tr:'Çinko Fosfat + Epoksi', h:240, src:'https://images.unsplash.com/photo-1542621334-a254cf47733d?w=600&q=80' },
+  { id:11, cat:'geomet',    title_tr:'Dacromet® Kaplama',               title_en:'Dacromet® Coating',          title_de:'Dacromet® Beschichtung', sub_tr:'Lamel – İnşaat', h:200, src:'https://images.unsplash.com/photo-1558618047-f4e90ea8e23e?w=600&q=80' },
+  { id:12, cat:'paint',     title_tr:'Yaş Boya Uygulama Hattı',         title_en:'Wet Paint Application Line', title_de:'Nasslack-Anwendungslinie', sub_tr:'Elektrostatik Sistem', h:280, src:'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80' },
+  { id:13, cat:'fastener',  title_tr:'Çinko-Nikel Cıvata',             title_en:'Zinc-Nickel Bolt',           title_de:'Zink-Nickel-Schraube', sub_tr:'M10 Hex – Zn-Ni', h:220, src:'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&q=80' },
+  { id:14, cat:'nickel',    title_tr:'Kimyasal Nikel Kaplama',          title_en:'Electroless Nickel Coating', title_de:'Chemische Nickelbeschichtung', sub_tr:'Tekdüze Dağılım', h:200, src:'https://images.unsplash.com/photo-1574607383476-f517f260d30b?w=600&q=80' },
+  { id:15, cat:'zinc',      title_tr:'Siyah Passivation',               title_en:'Black Passivation',          title_de:'Schwarze Passivierung', sub_tr:'Çinko – Siyah Kromat', h:240, src:'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80' },
+  { id:16, cat:'fastener',  title_tr:'Havşa Başlı Vida Seti',          title_en:'Countersunk Screw Set',      title_de:'Senkkopfschraubensatz', sub_tr:'DIN 7991 – ISO 10642', h:200, src:'https://images.unsplash.com/photo-1567789884554-0b844b597180?w=600&q=80' },
+  { id:17, cat:'geomet',    title_tr:'Geomet® Otomotiv Parçaları',     title_en:'Geomet® Automotive Parts',  title_de:'Geomet® Automotive-Teile', sub_tr:'Egzoz Sistem Parçaları', h:260, src:'https://images.unsplash.com/photo-1566195992011-5f6b21e539aa?w=600&q=80' },
+  { id:18, cat:'nickel',    title_tr:'Nikel-Krom Dekoratif',            title_en:'Nickel-Chrome Decorative',   title_de:'Nickel-Chrom Dekorativ', sub_tr:'Parlak Nikel + Krom', h:220, src:'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80' },
+];
+
+let currentFilter = 'all';
+let filteredItems = [...galleryData];
+let lbIndex = 0;
+
+function buildGallery(filter) {
+  currentFilter = filter;
+  filteredItems = filter === 'all' ? galleryData : galleryData.filter(i => i.cat === filter);
+  const grid = document.getElementById('gallery-grid');
+  if (!grid) return;
+  const lk = currentLang;
+  grid.innerHTML = filteredItems.map((item, idx) => `
+    <div class="gallery-item" style="height:${item.h}px" onclick="openLightbox(${idx})">
+      <img src="${item.src}" alt="${item['title_'+lk]||item.title_tr}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+      <div class="gallery-overlay">
+        <div class="gallery-item-title">${item['title_'+lk]||item.title_tr}</div>
+        <div class="gallery-item-sub">${item.sub_tr}</div>
+      </div>
+      <div class="gallery-item-zoom">↗</div>
+    </div>
+  `).join('');
+}
+
+function buildHomeGalleryPreview() {
+  const preview = document.getElementById('home-gallery-preview');
+  if (!preview || preview.children.length > 0) return;
+  galleryData.slice(0,4).forEach(item => {
+    const d = document.createElement('div');
+    d.style.cssText = 'position:relative;overflow:hidden;cursor:pointer;height:200px;';
+    d.innerHTML = `<img src="${item.src}" alt="${item.title_tr}" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,18,26,.85) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#fff;">${item.title_tr}</div>
+      </div>`;
+    d.onclick = () => showPage('gallery');
+    d.onmouseenter = e => e.currentTarget.querySelector('img').style.transform = 'scale(1.05)';
+    d.onmouseleave = e => e.currentTarget.querySelector('img').style.transform = 'scale(1)';
+    preview.appendChild(d);
+  });
+}
+
+function openLightbox(idx) {
+  lbIndex = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbStep(dir) {
+  lbIndex = (lbIndex + dir + filteredItems.length) % filteredItems.length;
+  updateLightbox();
+}
+function updateLightbox() {
+  const item = filteredItems[lbIndex];
+  const lk = currentLang;
+  document.getElementById('lb-img').src = item.src;
+  document.getElementById('lb-caption').textContent = (item['title_'+lk]||item.title_tr) + ' — ' + item.sub_tr;
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') lbStep(1);
+  if (e.key === 'ArrowLeft') lbStep(-1);
+});
+
+// ═══════════════════════════════════════
+// INIT — everything wired up after DOM ready
+// ═══════════════════════════════════════
+// ═══════════════════════════════════════
+// PAGE ROUTING
+// ═══════════════════════════════════════
+const pages = ['home','about','services','gallery','quality','sustainability','career','contact'];
+const navMap = { home:null, about:'nav-about', services:'nav-services', gallery:'nav-gallery', quality:'nav-quality', sustainability:'nav-sustainability', career:'nav-career', contact:'nav-contact' };
+let currentPage = 'home';
+
+function showPage(id) {
+  pages.forEach(p => {
+    const el = document.getElementById('page-'+p);
+    if (el) { el.classList.remove('active'); el.classList.remove('page-enter'); }
+  });
+  const target = document.getElementById('page-'+id);
+  if (!target) return;
+  target.classList.add('active');
+  void target.offsetWidth;
+  target.classList.add('page-enter');
+  currentPage = id;
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  if (navMap[id]) { const el = document.getElementById(navMap[id]); if (el) el.classList.add('active'); }
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (id === 'gallery') buildGallery(currentFilter);
+  if (id === 'home') buildHomeGalleryPreview();
+  if (ANIM_PAGES.includes(id)) setTimeout(() => startBoltAnimation(id), 120);
+  setTimeout(initReveal, 100);
+}
+
+// ═══════════════════════════════════════
+// REVEAL
+// ═══════════════════════════════════════
+function initReveal() {
+  const els = document.querySelectorAll('.page.active .reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  els.forEach(el => { el.classList.remove('on'); obs.observe(el); });
+}
+
+// ═══════════════════════════════════════
+// INIT — everything wired up after DOM ready
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ── Language switcher ──
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => applyLang(opt.dataset.lang));
+  });
+
+  // ── Theme toggle ──
+  const themeBtn = document.getElementById('theme-btn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      document.documentElement.classList.toggle('light', !isDark);
+    });
+  }
+
+  // ── Gallery filters ──
+  document.querySelectorAll('.gallery-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildGallery(btn.dataset.filter);
+    });
+  });
+
+  // ── Contact form ──
+  const cfBtn = document.getElementById('cf-btn');
+  if (cfBtn) {
+    cfBtn.addEventListener('click', e => {
+      e.preventDefault();
+      const sent = T[currentLang]['form.sent'] || '✓ Sent';
+      cfBtn.textContent = sent;
+      cfBtn.style.background = '#2ecc71';
+      setTimeout(() => {
+        cfBtn.textContent = T[currentLang]['form.submit'] || 'Submit';
+        cfBtn.style.background = '';
+      }, 4000);
+    });
+  }
+
+  // ── Initial build ──
+  buildHomeGalleryPreview();
+  initReveal();
+});
+</script>
+</body>
+</html>
